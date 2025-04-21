@@ -15,7 +15,7 @@ export default function Home() {
         />
         <ol>
           <li>
-            Get started by editing <code>src/app/page.tsx</code>.
+            Get started by  <code>src/app/page.tsx</code>.
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
@@ -87,7 +87,6 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Go to nextjs.org →
         </a>
       </footer>
     </div>
