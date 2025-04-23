@@ -2,6 +2,8 @@
 
 import { Box, Button, Typography } from "@mui/material";
 import { NotFoundContainer, NotFoundWrapper } from "./styled";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface NotFoundProps {
 	statusCode?: string;
@@ -12,6 +14,8 @@ export const NotFound: React.FC<NotFoundProps> = ({
 	statusCode = "404",
 	customMessage,
 }) => {
+	const router = useRouter();
+
 	const NotFoundStatus = [
 		{
 			status: "404",
@@ -22,6 +26,7 @@ export const NotFound: React.FC<NotFoundProps> = ({
 			message: "We apologize, we cannot find the data you are looking for.",
 		},
 	];
+
 	return (
 		<NotFoundWrapper>
 			<NotFoundContainer>
@@ -40,12 +45,10 @@ export const NotFound: React.FC<NotFoundProps> = ({
 						<Typography
 							fontWeight={"500"}
 							fontFamily={"Rokkitt"}
-							// lineHeight={"96px"}
 							fontSize={"128px"}
 						>
 							{statusCode}
 						</Typography>
-						{/* <Box width={"1px"} flex={1} bgcolor={"white"} />{" "} */}
 						<Typography
 							fontWeight={"300"}
 							fontFamily={"Rokkitt"}
@@ -77,18 +80,22 @@ export const NotFound: React.FC<NotFoundProps> = ({
 						}}
 						gap={"12px"}
 					>
+						<Link href="/" passHref>
+							<Button
+								variant="outlined"
+								sx={{
+									textTransform: "none",
+									fontFamily: "Poppins",
+									fontWeight: "400",
+									width: "100%", // biar ngisi kolom
+								}}
+							>
+								Take Me Home
+							</Button>
+						</Link>
 						<Button
 							variant="outlined"
-							sx={{
-								textTransform: "none",
-								fontFamily: "Poppins",
-								fontWeight: "400",
-							}}
-						>
-							Take Me Home
-						</Button>
-						<Button
-							variant="outlined"
+							onClick={() => router.back()}
 							sx={{
 								textTransform: "none",
 								fontFamily: "Poppins",

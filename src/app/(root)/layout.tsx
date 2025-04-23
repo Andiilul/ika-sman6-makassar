@@ -11,8 +11,7 @@ export default function MainLayout({
 }) {
 	return (
 		<Box>
-			<Navbar />
-			{children}
+			<Navbar />{children}
 			<Footer />
 		</Box>
 	);

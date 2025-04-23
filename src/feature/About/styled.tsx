@@ -74,13 +74,13 @@ export const HeroCardWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
 			gap: "4px",
 		},
 	}));
-export const HeroCardContainer: StyledComponent<BoxProps & { theme?: Theme }> =
+	export const HeroCardContainer: StyledComponent<BoxProps & { theme?: Theme }> =
 	styled(Box)(() => ({
 		display: "flex",
-		padding: "12px 0px",
+		padding:'12px 0px',
 		width: "100%", // ✅ ubah dari maxWidth jadi width penuh
 		overflowX: "auto", // ✅ gunakan "auto" agar muncul scroll hanya saat perlu
-		overflowY: "visible",
+		overflowY:"visible",					
 		flexDirection: "row",
 		justifyContent: "flex-start", // ✅ agar urutan card muncul dari kiri
 		gap: "16px",
@@ -98,7 +98,7 @@ export const HeroCard: StyledComponent<
 	CardActionAreaProps & { theme?: Theme }
 > = styled(CardActionArea)(({ theme }) => ({
 	display: "flex",
-	minWidth: "280px",
+	minWidth: "240px",
 	minHeight: "120px",
 	gap: "16px",
 	backgroundColor: alpha(theme.palette.background.paper, 0.5),
@@ -115,54 +115,3 @@ export const HeroCard: StyledComponent<
 		padding: "4px",
 	},
 }));
-
-export const AboutSection: StyledComponent<BoxProps & { theme?: Theme }> =
-	styled(Box)(() => ({
-		display: "grid",
-		gap: "16px",
-		gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-	}));
-export const JoinUsWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
-	styled(Box)(() => ({
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "center",
-		alignItems: "center",
-		width: "100%",
-		gap: "16px",
-		gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-	}));
-
-export const ActivityWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
-	styled(Box)(() => ({
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "center",
-		padding: "96px 0px ",
-		alignItems: "center",
-		width: "100%",
-		gap:"64px"
-
-	}));
-
-export const ActivityContainer: StyledComponent<BoxProps & { theme?: Theme }> =
-	styled(Box)(() => ({
-		display: "flex",
-		justifyContent: "center",
-		alignItems: "flex-start",
-		width: "100%",
-	}));
-export const ActivityContentBox: StyledComponent<BoxProps & { theme?: Theme }> =
-	styled(Box)(({}) => ({
-		display: "flex",
-		flexDirection: "column",
-		flex: "1",
-	}));
-export const ActivityContent: StyledComponent<BoxProps & { theme?: Theme }> =
-	styled(Box)(({}) => ({
-		display: "flex",
-		flexDirection: "column",
-		padding: "64px",
-		height: "350px",
-		justifyContent: "space-between",
-	}));

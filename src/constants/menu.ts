@@ -2,11 +2,10 @@
 
 const menu = [
   { title: "Beranda", link: "/" },
-  { title: "Tentang", link: "/tentang" },
-  { title: "Kegiatan", link: "/kegiatan" },
-  { title: "Direktori", link: "/direktori" },
-  { title: "Daftar Alumni", link: "/alumni" },
-  { title: "Kontak", link: "/kontak" },
+  { title: "Tentang", link: "/about" },
+  { title: "Kegiatan", link: "/activity" },
+  { title: "Direktori", link: "/directory" },
+  { title: "Kontak", link: "/contact" },
   // { title: "Login Admin", link: "/login" }
 ];
 

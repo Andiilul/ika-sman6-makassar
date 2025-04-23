@@ -1,3 +1,6 @@
+"use client"
+
+
 import {
 	Box,
 	Typography,
@@ -86,8 +89,7 @@ export const Footer: React.FC = () => {
 							{menu.map((map, index) => (
 								<Box
 									key={index}
-									component={"div"}
-									sx={{
+										sx={{
 										cursor: "pointer",
 									}}
 								>
@@ -188,6 +190,7 @@ export const Footer: React.FC = () => {
 					&copy; © 2024 Website IKA SMA Negeri 6 Makassar. Created by
 				</Typography>
 			</Box>
+			
 		</Box>
 	);
 };

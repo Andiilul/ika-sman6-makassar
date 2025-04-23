@@ -8,7 +8,7 @@ export const FooterWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
 		backgroundColor: theme.palette.background.default,
 		color: theme.palette.text.primary,
 		width: "100vw",
-		padding: "64px 96px",
+		padding: "64px 64px",
 		display: "flex",
 		maxWidth: "1980px",
 		justifyContent: "center",

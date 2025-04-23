@@ -1,3 +1,5 @@
+"use client"
+
 import { createTheme, PaletteMode } from "@mui/material";
 
 // Fungsi untuk generate tema berdasarkan mode (light/dark)
@@ -8,52 +10,52 @@ export const getDesignTokens = (mode: PaletteMode) => {
 			...(mode === "dark"
 				? {
 						primary: {
-							main: "#31A7FF", // Argentinian Blue
-							light: "#63BDFF", // Lighter blue for hover/focus
-							dark: "#0073CC", // Stronger blue for active/selected
-							contrastText: "#ffffff", // Keep white for readability
+							main: "#31A7FF",
+							light: "#63BDFF",
+							dark: "#0073CC",
+							contrastText: "#ffffff",
 						},
 						secondary: {
-							main: "#001E36", // Oxford Blue
-							light: "#123E5B", // Slightly lighter for hover states
-							dark: "#000B1A", // Almost black for depth
-							contrastText: "#ffffff", // Maintain good contrast
+							main: "#e53935", // Crimson Red — bold and energetic
+							light: "#ef5350", // Light Crimson — hover/focus state
+							dark: "#b71c1c", // Deep Crimson — active/pressed state
+							contrastText: "#ffffff", // Ensures readability on buttons, etc.
 						},
 						background: {
-							default: "#191919", // Rich Black
-							paper: "#1c242f", // Gunmetal
+							default: "#191919",
+							paper: "#000000",
 						},
 						text: {
-							primary: "#ffffff", // White
-							secondary: "#bababa", // Silver
-							disabled: "#555555", // Muted gray (still visible, but subdued)
+							primary: "#ffffff",
+							secondary: "#bababa",
+							disabled: "#555555",
 						},
 						common: {
-							black: "#ffffff", // White (for icons on dark bg)
-							white: "#000000", // Black (for rare light elements)
+							black: "#ffffff",
+							white: "#000000",
 						},
 				  }
 				: {
 						primary: {
-							main: "#31A7FF", // Argentinian Blue
-							light: "#63BDFF", // Slightly brighter for hover
-							dark: "#0073CC", // For pressed/active state
-							contrastText: "#ffffff", // Still provides high contrast on blue
+							main: "#31A7FF",
+							light: "#63BDFF",
+							dark: "#0073CC",
+							contrastText: "#ffffff",
 						},
 						secondary: {
-							main: "#001E36", // Oxford Blue
-							light: "#123E5B", // Slightly lighter than main
-							dark: "#000B1A", // Deep navy for contrast
-							contrastText: "#ffffff", // Ensures readability on dark blue
+							main: "#e53935", // Crimson Red — bold and energetic
+							light: "#ef5350", // Light Crimson — hover/focus state
+							dark: "#b71c1c", // Deep Crimson — active/pressed state
+							contrastText: "#ffffff", // Ensures readability on buttons, etc.
 						},
 						background: {
-							default: "#f9f9f9", // Almost white for clean UI
-							paper: "#ffffff", // Pure white cards, sheets
+							default: "#f9f9f9",
+							paper: "#ffffff",
 						},
 						text: {
-							primary: "#001E36", // Matches your secondary, gives consistency
-							secondary: "#4f5b62", // Slightly muted dark gray
-							disabled: "#9e9e9e", // Standard Material disabled gray
+							primary: "#000000",
+							secondary: "#4f5b62",
+							disabled: "#9e9e9e",
 						},
 						common: {
 							black: "#000000",
@@ -61,10 +63,38 @@ export const getDesignTokens = (mode: PaletteMode) => {
 						},
 				  }),
 		},
+		typography: {
+			fontFamily: "var(--font-poppins)",
+			h1: {
+				fontFamily: "var(--font-inter)",
+				fontWeight: 700,
+				fontSize: "3rem",
+			},
+			h2: {
+				fontFamily: "var(--font-inter)",
+				fontWeight: 600,
+				fontSize: "2.25rem",
+			},
+			h3: {
+				fontFamily: "var(--font-inter)",
+				fontWeight: 600,
+				fontSize: "1.875rem",
+			},
+			body1: {
+				fontFamily: "var(--font-poppins)",
+				fontWeight: 400,
+				fontSize: "1rem",
+			},
+			body2: {
+				fontFamily: "var(--font-poppins)",
+				fontWeight: 400,
+				fontSize: "0.875rem",
+			},
+		},
 	};
 };
 
 // Default theme (mode: 'light')
-const theme = createTheme(getDesignTokens("light"));
+const theme = createTheme(getDesignTokens("dark"));
 
 export default theme;
