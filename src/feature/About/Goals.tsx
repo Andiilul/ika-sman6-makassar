@@ -46,7 +46,7 @@ const Goals = () => {
 				Tujuan
 				<Typography
 					component={"span"}
-					color="white"
+					color={theme.palette.text.primary}
 					fontSize={"32px"}
 					fontWeight={600}
 				>

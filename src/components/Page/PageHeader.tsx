@@ -28,7 +28,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
 	return (
 		<PageHeaderWrapper>
 			<PageHeaderContainer>
-				<Typography fontSize="36px" fontWeight={600}>
+				<Typography fontSize="36px" fontWeight={600} color="white">
 					{title}
 				</Typography>
 				<div role="presentation" onClick={handleClick}>
