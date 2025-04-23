@@ -8,30 +8,26 @@ export const FooterWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
 		backgroundColor: theme.palette.background.default,
 		color: theme.palette.text.primary,
 		width: "100vw",
-		padding: "64px 64px",
+		padding: "64px 120px",
 		display: "flex",
-		maxWidth: "1980px",
 		justifyContent: "center",
-		['@media (max-width: 1024px)']: {
-		padding:"32px"
+		["@media (max-width: 1024px)"]: {
+			padding: "32px",
 		},
-		['@media (max-width: 640px)']: {
-			padding:"16px"
-		
+		["@media (max-width: 640px)"]: {
+			padding: "16px",
 		},
 	}));
 
 export const FooterContainer: StyledComponent<BoxProps & { theme?: Theme }> =
 	styled(Box)(() => ({
 		display: "grid",
+		maxWidth: "1980px",
 		gridTemplateColumns: "repeat(4 , minmax(0,1fr))",
-		gap:"32px",
-		['@media (max-width: 1024px)']: {
-		
-		},
-		['@media (max-width: 640px)']: {
+		gap: "32px",
+		["@media (max-width: 1024px)"]: {},
+		["@media (max-width: 640px)"]: {
 			gridTemplateColumns: "repeat(2 , minmax(0,1fr))",
-		
 		},
 	}));
 
@@ -56,12 +52,11 @@ export const QuickLinks: StyledComponent<BoxProps & { theme?: Theme }> = styled(
 	gap: "4px",
 	fontWeight: "400",
 	fontSize: "14px",
-	['@media (max-width: 1024px)']: {
-	fontSize:"12px"
+	["@media (max-width: 1024px)"]: {
+		fontSize: "12px",
 	},
-	['@media (max-width: 640px)']: {
-		fontSize:"10px"
-	
+	["@media (max-width: 640px)"]: {
+		fontSize: "10px",
 	},
 }));
 
