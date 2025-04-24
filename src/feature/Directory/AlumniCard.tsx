@@ -97,7 +97,7 @@ export const AlumniCard: React.FC<AlumniCardProps> = ({
 				<Typography fontSize={"12px"}>Lokasi Tugas : {alumni.location}</Typography>
 			</Box>
 
-			{/* Hover content tambahan (jika ada) */}
+			{/* Hover content tambaha\n (jika ada) */}
 			<Box
 				sx={{
 					transition: "all 0.3s ease-out",
