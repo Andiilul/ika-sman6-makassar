@@ -1,6 +1,7 @@
 import "./globals.css";
-import Providers from "./provider";
 import { Inter, Poppins } from "next/font/google";
+import Providers from "./provider";
+import ClientTransitionWrapper from "./ClientTransitionWrapper";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -13,20 +14,23 @@ const poppins = Poppins({
 	variable: "--font-poppins",
 });
 
-export const metadata = {
-	title: "IKA SMA 6 Makassar",
-	description: "Direktori Alumni Sekolah",
-};
-
 export default function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+		<html lang="id" className={`${inter.variable} ${poppins.variable}`}>
+			<head>
+				<title>IKA SMA 6 Makassar</title>
+				<meta name="description" content="Direktori Alumni Sekolah" />
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<link rel="icon" href="/favicon.ico" />
+			</head>
 			<body>
-				<Providers>{children}</Providers>
+				<Providers>
+					<ClientTransitionWrapper>{children}</ClientTransitionWrapper>
+				</Providers>
 			</body>
 		</html>
 	);
