@@ -6,6 +6,7 @@ import { IActivity } from "@/interfaces/Kegiatan";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { directusImageLoader } from "@/components/DirectusImage/DirectusImageLoader";
 
 interface ActivityCardProps {
 	activity: IActivity;
@@ -15,7 +16,6 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
 	const theme = useTheme();
 	const [hover, setHover] = useState(false);
 	const router = useRouter();
-
 	return (
 		<Box
 			onMouseEnter={() => setHover(true)}
@@ -39,7 +39,8 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
 				}}
 			>
 				<Image
-					src={"/images/test-hero.webp"}
+					loader={directusImageLoader}
+					src={activity.imageURL}
 					alt={activity.title}
 					fill
 					style={{
@@ -51,22 +52,14 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
 			</Box>
 
 			{/* Konten */}
-			<Box p={2} bgcolor={theme.palette.background.paper}>
+			<Box padding={"12px"} bgcolor={theme.palette.background.paper}>
 				<Typography fontWeight={600}>{activity.title}</Typography>
-				<Typography variant="body2" mb={1}>
-					{activity.shortDescription}
+				<Typography variant="body2" color="secondary">
+					{activity.location} -{" "}
+					{new Date(activity.date).toLocaleDateString("id-ID")}
 				</Typography>
-				<Typography variant="caption" color="text.secondary">
-					{new Date(activity.date).toLocaleDateString("id-ID")} —{" "}
-					<Typography
-						component="span"
-						variant="caption"
-						color={theme.palette.secondary.main}
-						fontWeight={600}
-					>
-						{activity.category}
-					</Typography>
-				</Typography>
+				<Typography variant="body2">{activity.short_description}</Typography>
+				<Typography variant="caption" color="text.secondary"></Typography>
 			</Box>
 
 			{/* Overlay Slide Up */}
@@ -86,7 +79,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
 					backgroundColor: "rgba(0, 0, 0, 0.7)",
 					color: "#fff",
 					zIndex: 10,
-          backdropFilter:"blur(2px)"
+					backdropFilter: "blur(2px)",
 				}}
 			>
 				<Typography fontWeight={600} fontSize={"20px"}>

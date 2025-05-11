@@ -15,26 +15,31 @@ import { motion } from "framer-motion";
 // styled/NavbarWrapper.ts
 export const NavbarWrapper = styled(motion(Box), {
 	shouldForwardProp: (prop) => prop !== "variant",
-})<{ variant: "initial" | "sticky" }>(({ theme, variant }) => ({
-	position: variant === "sticky" ? "fixed" : "absolute",
+})<{ variant: "initial" | "sticky" | "fixed" }>(({ theme, variant }) => ({
+	position:
+		variant === "fixed"
+			? "fixed"
+			: variant === "sticky"
+			? "sticky"
+			: "absolute",
 	top: 0,
 	zIndex: 100,
 	width: "100vw",
 	display: "flex",
 	justifyContent: "center",
 	alignItems: "center",
-	padding: "12px 120px",
+	padding: "16px", // default mobile
 	backgroundColor:
-		variant === "sticky"
+		variant === "sticky" || variant === "fixed"
 			? theme.palette.background.default
 			: "transparent",
-	boxShadow:
-		variant === "sticky" ? "0px 1px 4px rgba(0,0,0,0.2)" : "none",
-	["@media (max-width: 1024px)"]: {
+	boxShadow: variant === "sticky" ? "0px 1px 4px rgba(0,0,0,0.2)" : "none",
+
+	["@media (min-width: 768px)"]: {
 		padding: "32px",
 	},
-	["@media (max-width: 640px)"]: {
-		padding: "16px",
+	["@media (min-width: 1024px)"]: {
+		padding: "12px 64px",
 	},
 }));
 
@@ -42,7 +47,7 @@ export const NavbarContainer: StyledComponent<BoxProps & { theme?: Theme }> =
 	styled(Box)(() => ({
 		backgroundColor: "transparent",
 		width: "100%",
-		maxWidth: "1980px",
+		maxWidth: "1280px",
 		display: "flex",
 		justifyContent: "space-between",
 		alignItems: "center",

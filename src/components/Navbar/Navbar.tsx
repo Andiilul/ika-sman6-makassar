@@ -21,10 +21,12 @@ import { usePathname } from "next/navigation";
 import { PlayArrow } from "@mui/icons-material";
 import { useThemeContext } from "@/app/provider";
 import { AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export const Navbar: React.FC = () => {
 	const [mounted, setMounted] = useState(false);
 	const pathname = usePathname();
+	const isHome = pathname === "/";
 
 	useEffect(() => {
 		setMounted(true);
@@ -38,27 +40,39 @@ export const Navbar: React.FC = () => {
 	const [showSticky, setShowSticky] = useState(false);
 
 	useEffect(() => {
+		if (!isHome) return;
+
 		const handleScroll = () => {
 			setShowSticky(window.scrollY > 150);
 		};
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
+	}, [isHome]);
 
 	if (!mounted) return null;
 
 	return (
 		<>
-			<NavbarWrapper variant="initial">
+			<NavbarWrapper variant={isHome ? "initial" : "sticky"}>
 				<NavbarContainer>
-					<Box display={"flex"} gap={"32px"} alignItems={"center"}>
-						<Box height={"60px"} display={"flex"} alignItems={"center"}>
-							<Typography
-								fontFamily={"Rokkitt"}
-								color={theme.palette.primary.main}
-								fontSize={"24px"}
+					<Box display={"flex"} gap={"16px"} alignItems={"center"}>
+						<Box display={"flex"} gap={"16px"} alignItems={"center"}>
+							<Box
+								height={"60px"}
+								display="flex"
+								alignItems="center"
+								position="relative"
 							>
-								Logo here
+								<Image
+									src="/images/logo.png"
+									alt="Logo IKA SMA 6"
+									height={500}
+									width={500} // width is auto when using layout="intrinsic"
+									style={{ height: "60px", width: "auto" }}
+								/>
+							</Box>
+							<Typography fontSize={"18px"} fontWeight={600} lineHeight={1.2} color="white">
+								IKA SMAN 6<br /> Makassar
 							</Typography>
 						</Box>
 						<NavbarMenuList display={"flex"}>
@@ -99,7 +113,11 @@ export const Navbar: React.FC = () => {
 						<Button
 							color="primary"
 							variant="outlined"
-							sx={{ borderRadius: "50px", borderWidth: "2px", height:"max-content" }}
+							sx={{
+								borderRadius: "50px",
+								borderWidth: "2px",
+								height: "max-content",
+							}}
 						>
 							<Typography
 								fontFamily={"Poppins"}
@@ -130,7 +148,7 @@ export const Navbar: React.FC = () => {
 			<AnimatePresence>
 				{showSticky && (
 					<NavbarWrapper
-						variant="sticky"
+						variant="fixed"
 						initial={{ y: -80, opacity: 0 }}
 						animate={{ y: 0, opacity: 1 }}
 						exit={{ y: -80, opacity: 0 }}
@@ -138,14 +156,19 @@ export const Navbar: React.FC = () => {
 					>
 						<NavbarContainer>
 							<Box display={"flex"} gap={"32px"} alignItems={"center"}>
-								<Box height={"60px"} display={"flex"} alignItems={"center"}>
-									<Typography
-										fontFamily={"Rokkitt"}
-										color={theme.palette.primary.main}
-										fontSize={"24px"}
-									>
-										Logo here
-									</Typography>
+								<Box
+									height={"60px"}
+									display="flex"
+									alignItems="center"
+									position="relative"
+								>
+									<Image
+										src="/images/logo.png"
+										alt="Logo IKA SMA 6"
+										height={500}
+										width={500} // width is auto when using layout="intrinsic"
+										style={{ height: "60px", width: "auto" }}
+									/>
 								</Box>
 								<NavbarMenuList display={"flex"}>
 									{menu.map((nav, index) => {
@@ -185,7 +208,11 @@ export const Navbar: React.FC = () => {
 								<Button
 									color="primary"
 									variant="outlined"
-									sx={{ borderRadius: "50px", borderWidth: "2px", height:"max-content" }}
+									sx={{
+										borderRadius: "50px",
+										borderWidth: "2px",
+										height: "max-content",
+									}}
 								>
 									<Typography
 										fontFamily={"Poppins"}

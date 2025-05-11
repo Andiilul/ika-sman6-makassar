@@ -2,12 +2,13 @@
 
 import { Hero } from "./Hero";
 import { PageLayout } from "@/components/Page";
-import { AboutHome } from "./AboutHome";
-import { JoinUs } from "./JoinUJs";
+// import { AboutHome } from "./AboutHome";
+// import { JoinUs } from "./JoinUJs";
 import { alpha, Box, useTheme } from "@mui/material";
-import { ActivityHome } from "./ActivityHome";
+// import { ActivityHome } from "./ActivityHome";
 
 export const Home: React.FC = () => {
+	
 	const theme = useTheme();
 	return (
 		<Box
@@ -18,14 +19,14 @@ export const Home: React.FC = () => {
 			<Hero />
 			<PageLayout>
 				<Box display={"flex"} gap={"32px"} flexDirection={"column"}>
-					<AboutHome />
+					{/* <AboutHome /> */}
 				</Box>
 			</PageLayout>
 			<PageLayout color={alpha(theme.palette.primary.light, 0.05)}>
-				<ActivityHome />
+				{/* <ActivityHome /> */}
 			</PageLayout>
 			<PageLayout>
-				<JoinUs />
+				{/* <JoinUs /> */}
 			</PageLayout>
 		</Box>
 	);

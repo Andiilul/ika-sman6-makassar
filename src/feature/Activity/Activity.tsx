@@ -4,62 +4,59 @@ import { FlexBox } from "@/components/Page/FlexBox";
 import { PageLayout } from "@/components/Page";
 import { PageHeader } from "@/components/Page/PageHeader";
 import { ActivityGridContainer } from "./styled";
-import activitydata from "@/mock/activity-mock-data-ts";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import { ActivityContainer } from "./styled";
 import { IActivity } from "@/interfaces/Kegiatan";
-import { ActivitySearch } from "./ActivitySearch"; // Sesuaikan path
+import { ActivitySearch } from "./ActivitySearch";
 import { ActivityCard } from "./ActivityCard";
-
-const activity: IActivity[] = activitydata;
 
 export const Activity: React.FC = () => {
 	const theme = useTheme();
-	// Form state
+
+	// State
 	const [search, setSearch] = useState("");
-	const [category, setCategory] = useState("");
 	const [dateRange, setDateRange] = useState<[string, string]>(["", ""]);
+	const [activities, setActivities] = useState<IActivity[]>([]);
+	const [loading, setLoading] = useState(false);
 
-	// Debounce value
+	// Debounced search
 	const [debouncedSearch, setDebouncedSearch] = useState("");
-
-	// Debounce logic (500ms delay)
 	useEffect(() => {
-		const timeout = setTimeout(() => {
-			setDebouncedSearch(search);
-		}, 500);
-
+		const timeout = setTimeout(() => setDebouncedSearch(search), 500);
 		return () => clearTimeout(timeout);
 	}, [search]);
 
-	// Filtering logic
-	const filteredActivity = useMemo(() => {
-		return activity.filter((item) => {
-			const matchTitle = item.title
-				.toLowerCase()
-				.includes(debouncedSearch.toLowerCase());
+	// Fetch data when search or date range changes
+	useEffect(() => {
+		const fetchActivities = async () => {
+			setLoading(true);
+			try {
+				const params = new URLSearchParams();
+				if (debouncedSearch) params.append("keyword", debouncedSearch);
+				if (dateRange[0]) params.append("minDate", dateRange[0]);
+				if (dateRange[1]) params.append("maxDate", dateRange[1]);
 
-			const matchCategory = category ? item.category === category : true;
+				const res = await fetch(`/api/activity?${params.toString()}`);
+				const data = await res.json();
+				setActivities(data);
+			} catch (error) {
+				console.error("Failed to fetch activities:", error);
+			} finally {
+				setLoading(false);
+			}
+		};
 
-			const matchDate =
-				dateRange[0] && dateRange[1]
-					? new Date(item.date) >= new Date(dateRange[0]) &&
-					  new Date(item.date) <= new Date(dateRange[1])
-					: true;
-
-			return matchTitle && matchCategory && matchDate;
-		});
-	}, [debouncedSearch, category, dateRange]);
+		fetchActivities();
+	}, [debouncedSearch, dateRange]);
 
 	return (
 		<FlexBox flexDirection="column">
 			<PageHeader title="Kegiatan" />
-
 			<PageLayout>
 				<ActivityContainer>
 					{/* Section Header */}
-					<Box display="flex" gap="16px">
+					<Box display="flex" gap="16px" mb={2}>
 						<Box display="flex" gap="2px" flexDirection="column">
 							<Box
 								sx={{
@@ -99,23 +96,24 @@ export const Activity: React.FC = () => {
 					</Box>
 
 					{/* Search & Filter */}
-					<Box width={"100%"}>
+					<Box width={"100%"} mb={3}>
 						<ActivitySearch
 							onSearch={setSearch}
-							onCategoryFilter={setCategory}
 							onDateRangeChange={(start, end) => setDateRange([start, end])}
 						/>
 					</Box>
 
 					{/* Result */}
-						<ActivityGridContainer>
-							{filteredActivity.length === 0 ? (
-								<Typography>Tidak ada kegiatan yang cocok.</Typography>
-							) : (
-								filteredActivity.map((act, index) => (
-									<ActivityCard key={index} activity={act} />
-								))
-							)}
+					<ActivityGridContainer>
+						{loading ? (
+							<Typography>Loading...</Typography>
+						) : activities.length === 0 ? (
+							<Typography>Tidak ada kegiatan yang cocok.</Typography>
+						) : (
+							activities.map((act, index) => (
+								<ActivityCard key={index} activity={act} />
+							))
+						)}
 					</ActivityGridContainer>
 				</ActivityContainer>
 			</PageLayout>

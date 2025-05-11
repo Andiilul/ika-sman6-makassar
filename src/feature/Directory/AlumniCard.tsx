@@ -4,6 +4,7 @@ import { AlumniCardWrapper } from "./styled";
 import Image from "next/image";
 import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
+import { directusImageLoader } from "@/components/DirectusImage/DirectusImageLoader";
 
 interface AlumniCardProps {
 	alumni: IAlumni;
@@ -31,13 +32,10 @@ export const AlumniCard: React.FC<AlumniCardProps> = ({
 		>
 			{/* Gambar background */}
 			<Image
-				src={
-					alumni.gender === "Laki-laki"
-						? "/images/male.jpg"
-						: "/images/female.jpg"
-				}
-				alt={alumni.fullName}
+				src={alumni.imageURL} // just the filename_disk
+				alt={alumni.name}
 				fill
+				loader={directusImageLoader}
 				style={{ objectFit: "cover" }}
 			/>
 
@@ -61,7 +59,7 @@ export const AlumniCard: React.FC<AlumniCardProps> = ({
 					justifyContent={"center"}
 					alignItems={"center"}
 				>
-					{alumni.gender === "Laki-laki" ? (
+					{alumni.gender === "male" ? (
 						<MaleIcon
 							sx={{ color: theme.palette.primary.main, fontSize: "36px" }}
 						/>
@@ -88,13 +86,16 @@ export const AlumniCard: React.FC<AlumniCardProps> = ({
 				}}
 			>
 				<Typography fontSize={"16px"} fontWeight={600}>
-					{alumni.fullName}
+					{alumni.name}
 				</Typography>
 				<Typography fontSize={"12px"}>{alumni.profession}</Typography>
 				<Typography fontSize={"12px"}>
-					Tahun Lulusan : {alumni.graduationYear.year}
+					Tahun Lulusan : {alumni.graduation_year}
 				</Typography>
-				<Typography fontSize={"12px"}>Lokasi Tugas : {alumni.location}</Typography>
+				<Typography fontSize={"12px"}>
+					Lokasi Tugas :{" "}
+					{alumni.location === "makassar" ? "Makassar" : "Luar Makassar"}
+				</Typography>
 			</Box>
 
 			{/* Hover content tambaha\n (jika ada) */}
@@ -116,17 +117,17 @@ export const AlumniCard: React.FC<AlumniCardProps> = ({
 				}}
 			>
 				<Typography fontSize={"14px"} fontWeight={700}>
-					{alumni.fullName}
+					{alumni.name}
 				</Typography>
 				<Typography fontSize="12px">NISN: {alumni.nisn}</Typography>
 				<Typography fontSize="12px">Jenis Kelamin: {alumni.gender}</Typography>
 				<Typography fontSize="12px">
-					Tahun Lulusan: {alumni.graduationYear.year}
+					Tahun Lulusan: {alumni.graduation_year}
 				</Typography>
 				<Typography fontSize="12px">Suku: {alumni.ethnicity}</Typography>
 				<Typography fontSize="12px">Domisili: {alumni.domicile}</Typography>
 				<Typography fontSize="12px">Alamat: {alumni.address}</Typography>
-				<Typography fontSize="12px">Kontak: {alumni.contactNumber}</Typography>
+				<Typography fontSize="12px">Kontak: {alumni.contact_number}</Typography>
 				<Typography fontSize="12px">Profesi: {alumni.profession}</Typography>
 				<Typography fontSize="12px">Jabatan: {alumni.position}</Typography>
 				<Typography fontSize="12px">Lokasi Tugas: {alumni.location}</Typography>

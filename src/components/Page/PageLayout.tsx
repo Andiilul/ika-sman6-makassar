@@ -3,7 +3,7 @@
 import { PageContainer, PageWrapper } from "./styled";
 
 interface PageLayoutProps {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	color?: string;
 }
 

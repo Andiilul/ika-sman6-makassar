@@ -6,8 +6,13 @@ import { PageHeader } from "@/components/Page/PageHeader";
 import { ContactUSContainer } from "./styled";
 import { LocationCity, Mail, Phone } from "@mui/icons-material";
 import { socialMedia } from "@/constants/socialMedia";
+import { IGlobal } from "@/interfaces/Global";
 
-export const ContactUs: React.FC = () => {
+interface ContactUsProps {
+	globals: IGlobal | null;
+}
+
+export const ContactUs: React.FC<ContactUsProps> = ({ globals }) => {
 	const theme = useTheme();
 	return (
 		<Box width={"100%"} display={"flex"} flexDirection={"column"}>
@@ -49,7 +54,7 @@ export const ContactUs: React.FC = () => {
 										Call Center
 									</Typography>
 									<Typography fontWeight={600} fontSize={"12px"}>
-										+62 xxx xxx xxx xxx
+										{globals?.call_center}
 									</Typography>
 								</Box>
 							</Box>
@@ -71,7 +76,7 @@ export const ContactUs: React.FC = () => {
 										Email
 									</Typography>
 									<Typography fontWeight={600} fontSize={"12px"}>
-										info@gmail.com
+									{globals?.contact_email}
 									</Typography>
 								</Box>
 							</Box>

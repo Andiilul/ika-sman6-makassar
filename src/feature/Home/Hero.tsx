@@ -25,7 +25,7 @@ export const Hero: React.FC = () => {
 		<HeroWrapper>
 			<HeroContainer>
 				<Box display={"flex"} flexDirection={"column"}>
-					<Typography fontFamily={"Rokkitt"} fontSize={"32px"} color={"white"}>
+					<Typography fontFamily={"Alike"} fontSize={"32px"} color={"white"}>
 						Menyatukan Alumni dari Berbagai Generasi
 					</Typography>
 					<Typography

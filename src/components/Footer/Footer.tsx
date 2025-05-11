@@ -1,12 +1,6 @@
-"use client"
+"use client";
 
-
-import {
-	Box,
-	Typography,
-	useMediaQuery,
-	useTheme,
-} from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import {
 	FooterContainer,
 	FooterLeft,
@@ -18,24 +12,42 @@ import {
 import menu from "@/constants/menu";
 import { socialMedia } from "@/constants/socialMedia";
 import Link from "next/link";
+import Image from "next/image";
 
 export const Footer: React.FC = () => {
 	const theme = useTheme();
 
 	const medium = useMediaQuery("(max-width:1024px)");
-	const small = useMediaQuery("(max-width:640px)");
+	const small = useMediaQuery("(max-width:768px)");
 
 	return (
 		<Box display={"flex"} flexDirection={"column"}>
 			<FooterWrapper>
 				<FooterContainer>
 					<FooterLeft>
-						<Typography
-							fontSize={small ? "18px" : medium ? "24px" : "28px"}
-							fontFamily={"Rokkitt"}
-						>
-							IKA SMAN 6 Makassar
-						</Typography>
+						<Box display={"flex"} gap={"16px"}>
+							<Box
+								height={"80px"}
+								display="flex"
+								alignItems="center"
+								position="relative"
+							>
+								<Image
+									src="/images/logo.png"
+									alt="Logo IKA SMA 6"
+									height={500}
+									width={500} // width is auto when using layout="intrinsic"
+									style={{ height: "80px", width: "auto" }}
+								/>
+							</Box>
+							<Typography
+								fontSize={small ? "18px" : medium ? "24px" : "28px"}
+								fontFamily={"Alike"}
+								fontWeight={600}
+							>
+								IKA SMAN 6 Makassar
+							</Typography>
+						</Box>
 						<Typography
 							fontFamily={"Poppins"}
 							fontSize={small ? "10px" : medium ? "12px" : "14px"}
@@ -79,9 +91,9 @@ export const Footer: React.FC = () => {
 						</span>
 					</FooterLeft>
 					<FooterMid>
-						<Typography	
+						<Typography
 							fontSize={small ? "18px" : medium ? "24px" : "28px"}
-							fontFamily={"Rokkitt"}
+							fontFamily={"Alike"}
 						>
 							Navigasi
 						</Typography>
@@ -89,7 +101,7 @@ export const Footer: React.FC = () => {
 							{menu.map((map, index) => (
 								<Box
 									key={index}
-										sx={{
+									sx={{
 										cursor: "pointer",
 									}}
 								>
@@ -112,37 +124,11 @@ export const Footer: React.FC = () => {
 							))}
 						</QuickLinks>
 					</FooterMid>
-					<FooterMid>
-						<Typography
-							fontSize={small ? "18px" : medium ? "24px" : "28px"}
-							fontFamily={"Rokkitt"}
-						>
-							Kegiatan
-						</Typography>
-						{/* <QuickLinks>
-							{ExploreBlog.map((map, index) => (
-								<Link
-									key={index}
-									href={map.link}
-									sx={{
-										textTransform: "none",
-										textDecoration: "none",
-										transition: "200ms",
-										":hover": {
-											color: theme.palette.text.primary,
-											transition: "200ms",
-										},
-									}}
-								>
-									<Box>{map.name}</Box>
-								</Link>
-							))}
-						</QuickLinks> */}
-					</FooterMid>
+					
 					<FooterRight>
 						<Typography
 							fontSize={small ? "18px" : medium ? "24px" : "28px"}
-							fontFamily={"Rokkitt"}
+							fontFamily={"Alike"}
 						>
 							Contact Us
 						</Typography>
@@ -190,7 +176,6 @@ export const Footer: React.FC = () => {
 					&copy; © 2024 Website IKA SMA Negeri 6 Makassar. Created by
 				</Typography>
 			</Box>
-			
 		</Box>
 	);
 };

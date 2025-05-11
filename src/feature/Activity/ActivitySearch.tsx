@@ -3,30 +3,22 @@
 import {
 	Box,
 	TextField,
-	MenuItem,
-	FormControl,
-	InputLabel,
-	Select,
-	SelectChangeEvent,
-	InputAdornment,
 	Button,
+	InputAdornment,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 
 interface ActivitySearchProps {
 	onSearch: (query: string) => void;
-	onCategoryFilter: (category: string) => void;
 	onDateRangeChange: (startDate: string, endDate: string) => void;
 }
 
 export const ActivitySearch: React.FC<ActivitySearchProps> = ({
 	onSearch,
-	onCategoryFilter,
 	onDateRangeChange,
 }) => {
 	const [searchText, setSearchText] = useState("");
-	const [category, setCategory] = useState("");
 	const [startDate, setStartDate] = useState("");
 	const [endDate, setEndDate] = useState("");
 
@@ -38,20 +30,13 @@ export const ActivitySearch: React.FC<ActivitySearchProps> = ({
 
 	const handleReset = () => {
 		setSearchText("");
-		setCategory("");
 		setStartDate("");
 		setEndDate("");
 
 		onSearch("");
-		onCategoryFilter("");
 		onDateRangeChange("", "");
 	};
 
-	const handleCategoryChange = (e: SelectChangeEvent<string>) => {
-		const value = e.target.value;
-		setCategory(value);
-		onCategoryFilter(value);
-	};
 
 	const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value;
@@ -87,21 +72,7 @@ export const ActivitySearch: React.FC<ActivitySearchProps> = ({
 					}}
 				/>
 
-				<FormControl fullWidth>
-					<InputLabel>Kategori</InputLabel>
-					<Select
-						value={category}
-						label="Kategori"
-						onChange={handleCategoryChange}
-					>
-						<MenuItem value="">Semua Kategori</MenuItem>
-						<MenuItem value="Reuni">Reuni</MenuItem>
-						<MenuItem value="Bakti Sosial">Bakti Sosial</MenuItem>
-						<MenuItem value="Seminar">Seminar</MenuItem>
-						<MenuItem value="Olahraga">Olahraga</MenuItem>
-						<MenuItem value="Lainnya">Lainnya</MenuItem>
-					</Select>
-				</FormControl>
+				
 			</Box>
 
 			<Box display={"flex"} gap={"16px"}>

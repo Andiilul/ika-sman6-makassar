@@ -3,60 +3,57 @@
 import { FlexBox } from "@/components/Page/FlexBox";
 import { PageLayout } from "@/components/Page";
 import { PageHeader } from "@/components/Page/PageHeader";
-import { AlumniGridContainer } from "./styled";
+import { AlumniGridContainer, DirectoryContainer } from "./styled";
 import { AlumniCard } from "./AlumniCard";
-import alumniData from "@/mock/alumni-mock-data-ts";
+import { AlumniSearch } from "./AlumniSearch";
 import { IAlumni } from "@/interfaces/Alumni";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import theme from "@/constants/theme/theme";
 import { Box, Typography } from "@mui/material";
-import { DirectoryContainer } from "./styled";
-import { AlumniSearch } from "./AlumniSearch"; // Import komponen search/filter
-
-const alumni: IAlumni[] = alumniData;
 
 export const Directory: React.FC = () => {
 	const [hover, setHover] = useState<number | null>(null);
 	const [search, setSearch] = useState("");
 	const [filterYear, setFilterYear] = useState("");
 	const [filterLocation, setFilterLocation] = useState("");
-
-	const graduationYears = useMemo(() => {
-		const years = alumni.map((a) => a.graduationYear.year);
-		return Array.from(new Set(years)).sort((a, b) => b - a);
-	}, []);
-
 	const [debouncedSearch, setDebouncedSearch] = useState("");
+	const [alumni, setAlumni] = useState<IAlumni[]>([]);
+	const [loading, setLoading] = useState(false);
 
-	// Delay 300ms setelah user berhenti mengetik
 	useEffect(() => {
 		const handler = setTimeout(() => {
 			setDebouncedSearch(search);
 		}, 500);
-
 		return () => clearTimeout(handler);
 	}, [search]);
 
+	useEffect(() => {
+		const fetchAlumni = async () => {
+			setLoading(true);
+			try {
+				const params = new URLSearchParams();
+				if (debouncedSearch) params.append("keyword", debouncedSearch);
+				if (filterYear) params.append("gradYear", filterYear);
+				if (filterLocation) params.append("location", filterLocation);
 
-	const filteredAlumni = useMemo(() => {
-		return alumni.filter((a) => {
-			const matchName = a.fullName
-				.toLowerCase()
-				.includes(debouncedSearch.toLowerCase());
-			const matchYear = filterYear
-				? a.graduationYear.year.toString() === filterYear
-				: true;
-			const matchLocation = filterLocation
-				? a.location === filterLocation
-				: true;
-			return matchName && matchYear && matchLocation;
-		});
+				const res = await fetch(`/api/alumni?${params.toString()}`);
+				if (!res.ok) {
+					throw new Error(`API error: ${res.status}`);
+				}
+				const data = await res.json();
+				setAlumni(data);
+			} catch (error) {
+				console.error("Failed to fetch alumni:", error);
+			} finally {
+				setLoading(false);
+			}
+		};
+		fetchAlumni();
 	}, [debouncedSearch, filterYear, filterLocation]);
 
 	return (
 		<FlexBox flexDirection="column">
 			<PageHeader title="Direktori" />
-
 			<PageLayout>
 				<DirectoryContainer>
 					<Box display="flex" gap="16px">
@@ -100,23 +97,28 @@ export const Directory: React.FC = () => {
 
 					<Box mt={4}>
 						<AlumniSearch
-							onSearch={(val) => setSearch(val)}
-							onFilterYear={(val) => setFilterYear(val)}
-							onFilterLocation={(val) => setFilterLocation(val)}
-							graduationYears={graduationYears}
+							onSearch={setSearch}
+							onFilterYear={setFilterYear}
+							onFilterLocation={setFilterLocation}
 						/>
 					</Box>
 
 					<AlumniGridContainer>
-						{filteredAlumni.map((alumni, index) => (
-							<AlumniCard
-								key={index}
-								index={index}
-								hover={hover}
-								setHover={setHover}
-								alumni={alumni}
-							/>
-						))}
+						{loading ? (
+							<Typography>Loading...</Typography>
+						) : alumni.length === 0 ? (
+							<Typography>Tidak ada alumni yang cocok.</Typography>
+						) : (
+							alumni.map((alum, index) => (
+								<AlumniCard
+									key={index}
+									index={index}
+									hover={hover}
+									setHover={setHover}
+									alumni={alum}
+								/>
+							))
+						)}
 					</AlumniGridContainer>
 				</DirectoryContainer>
 			</PageLayout>

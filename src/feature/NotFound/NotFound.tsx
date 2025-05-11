@@ -44,14 +44,14 @@ export const NotFound: React.FC<NotFoundProps> = ({
 					>
 						<Typography
 							fontWeight={"500"}
-							fontFamily={"Rokkitt"}
+							fontFamily={"Alike"}
 							fontSize={"128px"}
 						>
 							{statusCode}
 						</Typography>
 						<Typography
 							fontWeight={"300"}
-							fontFamily={"Rokkitt"}
+							fontFamily={"Alike"}
 							fontSize={"36px"}
 						>
 							Oops, Something Went Wrong!
@@ -62,7 +62,7 @@ export const NotFound: React.FC<NotFoundProps> = ({
 							textAlign={"center"}
 							fontWeight={"300"}
 							fontSize={"20px"}
-							fontFamily={"Rokkitt"}
+							fontFamily={"Alike"}
 						>
 							{customMessage
 								? customMessage
