@@ -10,6 +10,8 @@ export const FooterWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
 		width: "100vw",
 		padding: "16px", // mobile default
 		display: "flex",
+		alignItems: "center",
+		flexDirection: "column",
 		justifyContent: "center",
 		["@media (min-width: 768px)"]: {
 			padding: "32px",
@@ -22,10 +24,10 @@ export const FooterContainer: StyledComponent<BoxProps & { theme?: Theme }> =
 	styled(Box)(() => ({
 		display: "grid",
 		maxWidth: "1280px",
-		gridTemplateColumns: "repeat(2 , minmax(0,1fr))", // mobile default
+		gridTemplateColumns: "repeat(1 , minmax(0,1fr))", // mobile default
 		gap: "32px",
 		["@media (min-width: 1024px)"]: {
-			gridTemplateColumns: "repeat(4 , minmax(0,1fr))",
+			gridTemplateColumns: "repeat(2 , minmax(0,1fr))",
 		},
 	}));
 export const FooterBox: StyledComponent<BoxProps & { theme?: Theme }> = styled(
@@ -46,7 +48,7 @@ export const QuickLinks: StyledComponent<BoxProps & { theme?: Theme }> = styled(
 )(() => ({
 	display: "flex",
 	flexDirection: "column",
-	gap: "4px",
+	gap: "12px",
 	fontWeight: "400",
 	fontSize: "10px", // mobile default
 	["@media (min-width: 768px)"]: {
@@ -56,15 +58,10 @@ export const QuickLinks: StyledComponent<BoxProps & { theme?: Theme }> = styled(
 		fontSize: "14px",
 	},
 }));
-export const FooterMid: StyledComponent<BoxProps & { theme?: Theme }> = styled(
-	FooterBox
-)(() => ({
-	display: "flex",
-	flexDirection: "column",
-}));
+
 
 export const FooterRight: StyledComponent<BoxProps & { theme?: Theme }> =
 	styled(FooterBox)(() => ({
-		display: "flex",
-		flexDirection: "column",
+		display: "grid",
+		gridTemplateColumns: "repeat(2 , minmax(0,1fr))", // mobile default
 	}));

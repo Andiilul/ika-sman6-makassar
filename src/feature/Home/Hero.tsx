@@ -1,7 +1,7 @@
 "use client";
 
 // Hero.tsx
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import {
 	HeroCard,
 	HeroCardContainer,
@@ -20,18 +20,29 @@ import { Phone } from "@mui/icons-material";
 export const Hero: React.FC = () => {
 	const [hover, setHover] = useState<number | null>(null);
 
+	const large = useMediaQuery("(min-width:1024px)");
+	const medium = useMediaQuery("(min-width:768px)");
+
 	const theme = useTheme();
 	return (
 		<HeroWrapper>
 			<HeroContainer>
 				<Box display={"flex"} flexDirection={"column"}>
-					<Typography fontFamily={"Alike"} fontSize={"32px"} color={"white"}>
+					<Typography
+						width={"100%"}
+						textAlign={large ? "left" : "center"}
+						fontFamily={"Alike"}
+						fontSize={large ? "24px" : medium ? "18px" : "12px"}
+						color={"white"}
+					>
 						Menyatukan Alumni dari Berbagai Generasi
 					</Typography>
 					<Typography
+						width={"100%"}
+						textAlign={large ? "left" : "center"}
 						fontFamily={"Poppins"}
-						fontSize={"96px"}
-						lineHeight={"96px"}
+						fontSize={large ? "56px" : medium ? "48px" : "40px"}
+						lineHeight={large ? "56px" : medium ? "48px" : "40px"}
 						color={"white"}
 						fontWeight={600}
 						sx={{
@@ -41,11 +52,13 @@ export const Hero: React.FC = () => {
 						IKA SMA 6
 					</Typography>
 					<Typography
+						width={"100%"}
+						textAlign={large ? "left" : "center"}
 						fontFamily={"Poppins"}
-						fontSize={"96px"}
+						fontSize={large ? "56px" : medium ? "48px" : "40px"}
 						color={theme.palette.primary.main}
 						fontWeight={600}
-						lineHeight={"96px"}
+						lineHeight={large ? "56px" : medium ? "48px" : "40px"}
 						sx={{
 							userSelect: "none",
 						}}
@@ -337,7 +350,7 @@ export const Hero: React.FC = () => {
 									fontWeight="500"
 									color={theme.palette.text.primary}
 								>
-										Hubungi Kami{" "}
+									Hubungi Kami{" "}
 								</Typography>
 							</Box>
 

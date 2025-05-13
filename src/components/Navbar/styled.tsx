@@ -45,7 +45,7 @@ export const NavbarWrapper = styled(motion(Box), {
 
 export const NavbarContainer: StyledComponent<BoxProps & { theme?: Theme }> =
 	styled(Box)(() => ({
-		backgroundColor: "transparent",
+		// backgroundColor: "white",
 		width: "100%",
 		maxWidth: "1280px",
 		display: "flex",
@@ -53,11 +53,38 @@ export const NavbarContainer: StyledComponent<BoxProps & { theme?: Theme }> =
 		alignItems: "center",
 		gap: "32px",
 	}));
+export const NavActionBox: StyledComponent<BoxProps & { theme?: Theme }> =
+	styled(Box)(() => ({
+		alignItems: "center",
+		display: "flex",
+		gap: "16px",
+		["@media (min-width: 1024px)"]: {
+			display: "flex",
+			alignItems: "center",
+			justifyContent: "center",
+		},
+		["@media (min-width: 768px)"]: {},
+	}));
+export const LogoBox: StyledComponent<BoxProps & { theme?: Theme }> = styled(
+	Box
+)(() => ({
+	display: "flex",
+	alignItems: "center",
+	gap: "8px",
+	["@media (min-width: 1024px)"]: {
+		position: "relative",
+	},
+	["@media (min-width: 768px)"]: {},
+}));
 
 export const NavbarMenuList: StyledComponent<BoxProps & { theme?: Theme }> =
 	styled(Box)(() => ({
-		display: "flex",
 		gap: "16px",
+		display: "none",
+		["@media (min-width: 1024px)"]: {
+			display: "flex",
+		},
+		["@media (min-width: 768px)"]: {},
 	}));
 
 export const NavItem: StyledComponent<TypographyProps & { theme?: Theme }> =
@@ -78,7 +105,7 @@ export const ThemeSwitcher = styled(Switch)(({ theme }) => ({
 	height: 34,
 	padding: 7,
 	"& .MuiSwitch-switchBase": {
-		margin: 1,
+		margin: 0,
 		padding: 0,
 		transform: "translateX(6px)",
 		"&.Mui-checked": {

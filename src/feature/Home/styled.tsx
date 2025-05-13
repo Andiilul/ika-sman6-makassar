@@ -15,7 +15,7 @@ export const HeroContainer: StyledComponent<BoxProps & { theme?: Theme }> =
 	styled(Box)(() => ({
 		position: "relative",
 		zIndex: "1",
-		display: "flex",
+		display: "grid",
 		flex: "1",
 		gap: "16px", // default
 		flexDirection: "column",
@@ -27,6 +27,7 @@ export const HeroContainer: StyledComponent<BoxProps & { theme?: Theme }> =
 		},
 		["@media (min-width: 1024px)"]: {
 			maxWidth: "1280px",
+			gridTemplateColumns: "repeat(2, minmax(0, 1fr))", // default mobile
 		},
 	}));
 
@@ -53,16 +54,18 @@ export const HeroWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
 		},
 
 		["@media (min-width: 768px)"]: {
-			padding: "32px 32px",
+			padding: "120px 64px",
+			minHeight: "480px",
 		},
 		["@media (min-width: 1024px)"]: {
 			padding: "120px 64px",
+			minHeight: "640px",
 		},
 	}));
 
 export const HeroCardWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
 	styled(Box)(() => ({
-		display: "grid",
+		display: "none",
 		gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
 		justifyContent: "flex-end",
 		gap: "4px", // default
@@ -72,12 +75,14 @@ export const HeroCardWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
 		},
 		["@media (min-width: 1024px)"]: {
 			gap: "16px",
+			display: "flex",
 		},
 	}));
 
 export const HeroCardContainer: StyledComponent<BoxProps & { theme?: Theme }> =
 	styled(Box)(() => ({
-		display: "flex",
+		display: "grid",
+		gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
 		padding: "12px 0px",
 		width: "100%",
 		overflowX: "auto",
@@ -100,7 +105,6 @@ export const HeroCard: StyledComponent<
 	CardActionAreaProps & { theme?: Theme }
 > = styled(CardActionArea)(({ theme }) => ({
 	display: "flex",
-	minWidth: "280px",
 	minHeight: "120px",
 	gap: "16px",
 	backgroundColor: alpha(theme.palette.background.paper, 0.5),
@@ -121,12 +125,19 @@ export const HeroCard: StyledComponent<
 export const AboutSection: StyledComponent<BoxProps & { theme?: Theme }> =
 	styled(Box)(() => ({
 		display: "grid",
-		gap: "16px",
-		gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+		gap: "8px",
+		gridTemplateColumns: "repeat(1, minmax(0, 1fr))",
+		["@media (min-width: 1024px)"]: {
+			gap: "32px",
+		},
+		["@media (min-width: 768px)"]: {
+			gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+			gap: "16px",
+		},
 	}));
 
 export const JoinUsWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
-	styled(Box)(() => ({
+	styled(Box)(({ theme }) => ({
 		display: "flex",
 		flexDirection: "column",
 		justifyContent: "center",
@@ -134,6 +145,10 @@ export const JoinUsWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
 		width: "100%",
 		gap: "16px",
 		gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+		background: `linear-gradient(to bottom, transparent, ${alpha(
+			theme.palette.primary.main,
+			0.1
+		)})`,
 	}));
 
 export const ActivityWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
@@ -141,10 +156,18 @@ export const ActivityWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
 		display: "flex",
 		flexDirection: "column",
 		justifyContent: "center",
-		padding: "64px 0px",
+		padding: "16px 0px",
 		alignItems: "center",
 		width: "100%",
-		gap: "64px",
+		gap: "16px",
+		["@media (min-width: 1024px)"]: {
+			padding: "64px 0px",
+			gap: "64px",
+		},
+		["@media (min-width: 768px)"]: {
+			padding: "32px 0px",
+			gap: "32px",
+		},
 	}));
 
 export const ActivityContainer: StyledComponent<BoxProps & { theme?: Theme }> =
@@ -166,7 +189,16 @@ export const ActivityContent: StyledComponent<BoxProps & { theme?: Theme }> =
 	styled(Box)(() => ({
 		display: "flex",
 		flexDirection: "column",
-		padding: "64px",
-		height: "350px",
+		padding: "24px",
+		gap: "32px",
 		justifyContent: "space-between",
+		["@media (min-width: 1024px)"]: {
+			minHeight: "350px",
+		padding: "48px",
+
+		},
+		["@media (min-width: 768px)"]: {
+		padding: "36px",
+
+		},
 	}));
