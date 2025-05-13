@@ -1,7 +1,7 @@
 "use client";
 
 import { FlexBox } from "@/components/Page/FlexBox";
-import { alpha, Box, Typography, useTheme } from "@mui/material";
+import { alpha, Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { PageLayout } from "@/components/Page";
 import { PageHeader } from "@/components/Page/PageHeader";
 import { AboutContainer } from "./styled";
@@ -9,6 +9,8 @@ import Goals from "./Goals";
 import Image from "next/image";
 
 export const About: React.FC = () => {
+	const large = useMediaQuery("(min-width:1024px)");
+	const medium = useMediaQuery("(min-width:768px)");
 	const theme = useTheme();
 	return (
 		<FlexBox flexDirection={"column"}>
@@ -18,9 +20,10 @@ export const About: React.FC = () => {
 				<Box display={"flex"} flexDirection={"column"}>
 					<AboutContainer>
 						<Box
-							display={"grid"}
-							gridTemplateColumns={"repeat(2, 1fr)"}
-							gap={"16px"}
+							display={medium ? "grid" : "flex"}
+							flexDirection={medium ? "row" : "column-reverse"}
+							gridTemplateColumns={medium ? "repeat(2, 1fr)" : "0"}
+							gap={large ? "36px" : medium ? "30px" : "24px"}
 							width="100%"
 						>
 							{/* KIRI: Konten Teks */}
@@ -33,17 +36,20 @@ export const About: React.FC = () => {
 									alignItems={"start"}
 								>
 									<Box display={"flex"} alignItems={"center"} height={"30px"}>
-										<Typography fontWeight={600} color="secondary">
+										<Typography fontWeight={600} color="primary">
 											TENTANG IKA SMA 6 MAKASSAR
 										</Typography>
 									</Box>
-									<Box display={"flex"} flexDirection={"column"}>
+									<Box
+										display={medium ? "flex" : "none"}
+										flexDirection={"column"}
+									>
 										<Box height={"16px"}></Box>
 										<Box height={"100%"} display={"flex"} alignItems={"start"}>
 											<Box
 												width={"120px"}
 												height={"1px"}
-												bgcolor={alpha(theme.palette.secondary.main, 0.5)}
+												bgcolor={alpha(theme.palette.primary.main, 0.5)}
 											/>
 											<Box
 												display={"flex"}
@@ -54,16 +60,13 @@ export const About: React.FC = () => {
 												<Box
 													width={"2px"}
 													height={"10px"}
-													bgcolor={alpha(theme.palette.secondary.main, 0.5)}
+													bgcolor={alpha(theme.palette.primary.main, 0.5)}
 												/>
 												<Box
 													borderRadius={"50%"}
 													bgcolor={"transparent"}
 													sx={{
-														borderColor: alpha(
-															theme.palette.secondary.main,
-															0.5
-														),
+														borderColor: alpha(theme.palette.primary.main, 0.5),
 													}}
 													border={"1px solid"}
 													height={"9px"}
@@ -76,23 +79,26 @@ export const About: React.FC = () => {
 
 								{/* Judul Besar dan Deskripsi */}
 								<Box display={"flex"} flexDirection={"column"} gap={"8px"}>
-									<Typography fontSize={"32px"} fontWeight={600}>
+									<Typography
+										fontSize={large ? "36px" : medium ? "30px" : "24px"}
+										fontWeight={600}
+									>
 										IKA SMA 6
 										<Typography
-											fontSize={"32px"}
+											fontSize={large ? "36px" : medium ? "30px" : "24px"}
 											fontWeight={600}
 											component={"span"}
-											color="secondary"
+											color="primary"
 										>
 											{" "}
 											MAKASSAR
 										</Typography>
 										<br />
 										<Typography
-											fontSize={"32px"}
+											fontSize={large ? "36px" : medium ? "30px" : "24px"}
 											fontWeight={600}
 											component={"span"}
-											color="secondary"
+											color="primary"
 										>
 											{" "}
 											Menyatukan
@@ -100,7 +106,7 @@ export const About: React.FC = () => {
 										Alumni
 									</Typography>
 
-									<Typography fontSize={"16px"}>
+									<Typography fontSize={medium ? "16px" : "14px"}>
 										Ikatan Alumni SMA Negeri 6 Makassar adalah organisasi yang
 										dibentuk oleh para alumni SMA Negeri 6 Makassar. Organisasi
 										ini bertujuan untuk menjalin silaturahmi, meningkatkan
@@ -114,7 +120,7 @@ export const About: React.FC = () => {
 							<Box
 								position="relative"
 								width="100%"
-								minHeight="360px"
+								height={large ? "360px" :medium? "240px" :"160px"}
 								borderRadius="12px"
 								overflow="hidden"
 							>

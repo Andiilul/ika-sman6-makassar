@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
 	GoalsContainer,
@@ -6,7 +8,7 @@ import {
 	GoalsWrapper,
 } from "./styled";
 import Image from "next/image";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 const goals = [
 	{
@@ -33,21 +35,24 @@ const goals = [
 
 const Goals = () => {
 	const theme = useTheme();
+
+	const large = useMediaQuery("(min-width:1024px)");
+	const medium = useMediaQuery("(min-width:768px)");
 	return (
 		<GoalsWrapper>
 			<Typography
 				width={"100%"}
 				textAlign={"center"}
 				component={"span"}
-				color="secondary"
-				fontSize={"32px"}
+				color="primary"
+				fontSize={large ? "36px" : medium ? "30px" : "24px"}
 				fontWeight={600}
 			>
 				Tujuan
 				<Typography
 					component={"span"}
 					color={theme.palette.text.primary}
-					fontSize={"32px"}
+					fontSize={large ? "36px" : medium ? "30px" : "24px"}
 					fontWeight={600}
 				>
 					{" "}
@@ -59,81 +64,97 @@ const Goals = () => {
 					display: "flex",
 					flex: "1",
 					flexDirection: "column",
+					gap: medium ? "0" : "12px",
 				}}
 			>
 				{goals.map((goal, index) => (
 					<GoalsContainer
 						key={index}
-						direction={index % 2 === 0 ? "row-reverse" : "row"}
+						direction={
+							!medium ? "row" : index % 2 === 0 ? "row-reverse" : "row"
+						}
 					>
 						<GoalsContent>
-							<Box display={"flex"} flexDirection={"column"} gap={"16px"}>
+							<Box
+								display={"flex"}
+								flexDirection={"column"}
+								gap={large ? "16px" : ""}
+							>
 								<Typography
-									color="secondary"
-									fontSize={"24px"}
+									color="primary"
+									fontSize={large ? "24px" : medium ? "20px" : "16px"}
 									fontWeight={"600"}
 								>
 									{goal.title}
 								</Typography>
-								<Typography>{goal.desc}</Typography>
-							</Box>
-						</GoalsContent>
-
-						<GoalsDivider>
-							<Box
-								width={"2px"}
-								bgcolor={theme.palette.secondary.main}
-								flex={1}
-							></Box>
-							<Box
-								width={"90px"}
-								height={"90px"}
-								borderRadius={"50%"}
-								display={"flex"}
-								justifyContent={"center"}
-								alignItems={"center"}
-								sx={{
-									borderColor: theme.palette.secondary.main,
-									borderWidth: "2px",
-									borderStyle: "solid",
-								}}
-							>
 								<Typography
-									sx={{
-										fontSize: "36px",
-										fontWeight: 600,
-									}}
+									fontSize={large ? "16px" : medium ? "14px" : "12px"}
 								>
-									{index + 1}
+									{goal.desc}
 								</Typography>
 							</Box>
-							<Box
-								width={"2px"}
-								bgcolor={theme.palette.secondary.main}
-								flex={1}
-							></Box>
-						</GoalsDivider>
-
-						<GoalsContent>
-							<Box
-								position="relative"
-								width="100%"
-								sx={{
-									aspectRatio: "5 / 3",
-									borderRadius: "8px",
-									overflow: "hidden",
-								}}
-							>
-								<Image
-									fill
-									src={goal.image}
-									alt={goal.title}
-									style={{
-										objectFit: "cover",
-									}}
-								/>
-							</Box>
 						</GoalsContent>
+						{medium && (
+							<>
+								<GoalsDivider>
+									<Box
+										width={"2px"}
+										bgcolor={theme.palette.secondary.main}
+										flex={1}
+									></Box>
+									<Box
+										width={large ? "90px" : "60px"}
+										height={large ? "90px" : "60px"}
+										borderRadius={"50%"}
+										display={"flex"}
+										justifyContent={"center"}
+										alignItems={"center"}
+										sx={{
+											borderColor: theme.palette.secondary.main,
+											borderWidth: "2px",
+											borderStyle: "solid",
+										}}
+									>
+										<Typography
+											color="secondary"
+											sx={{
+												fontSize: large ? "36px" : "30px",
+												fontWeight: 600,
+											}}
+										>
+											{index + 1}
+										</Typography>
+									</Box>
+									<Box
+										width={"2px"}
+										bgcolor={theme.palette.secondary.main}
+										flex={1}
+									></Box>
+								</GoalsDivider>
+								<GoalsContent>
+									<Box
+										position="relative"
+										width="100%"
+										display={medium ? "block" : "none"}
+										sx={{
+											aspectRatio: "5 / 3",
+											borderRadius: "8px",
+											overflow: "hidden",
+										}}
+									>
+										<Image
+											fill
+											src={goal.image}
+											alt={goal.title}
+											style={{
+												display: medium ? "block" : "none",
+												objectFit: "cover",
+											}}
+										/>
+									</Box>
+								</GoalsContent>
+							</>
+						)}
 					</GoalsContainer>
 				))}
 			</Box>

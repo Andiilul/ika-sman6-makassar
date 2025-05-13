@@ -18,7 +18,14 @@ export const GoalsWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
 		display: "flex",
 		flex: "1",
 		flexDirection: "column",
-		gap:"64px"
+		gap: "32px",
+
+		["@media (min-width: 1024px)"]: {
+			gap: "64px",
+		},
+		["@media (min-width: 768px)"]: {
+			gap: "48px",
+		},
 		// backgroundColor: "white",
 	}));
 export const GoalsContainer = styled(Box, {
@@ -37,14 +44,23 @@ export const GoalsContent: StyledComponent<BoxProps & { theme?: Theme }> =
 		flex: "1",
 		flexDirection: "column",
 		gap: "64px",
+		["@media (min-width: 1024px)"]: {},
+		["@media (min-width: 768px)"]: {},
 		// backgroundColor: "white",
 	}));
 export const GoalsDivider: StyledComponent<BoxProps & { theme?: Theme }> =
 	styled(Box)(() => ({
-		position:"relative",
+		position: "relative",
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
-		width: "160px",
-		height: "400px",
+
+		["@media (min-width: 1024px)"]: {
+			height: "400px",
+			width: "160px",
+		},
+		["@media (min-width: 768px)"]: {
+			height: "240px",
+			width: "120px",
+		},
 	}));
