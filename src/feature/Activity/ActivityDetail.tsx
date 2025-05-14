@@ -67,10 +67,11 @@ export const ActivityDetail: React.FC<ActivityDetailProps> = ({ id }) => {
 				{activity.imageURL && (
 					<ActivityImageContainer>
 						<Image
-							src={activity.imageURL}
+							loader={directusImageLoader}
+							src={activity.imageURL ?? ""}
 							alt={activity.title}
 							fill
-							loader={directusImageLoader}
+							unoptimized // ✅ Tambahkan ini
 							style={{ objectFit: "cover" }}
 						/>
 					</ActivityImageContainer>
@@ -89,7 +90,7 @@ export const ActivityDetail: React.FC<ActivityDetailProps> = ({ id }) => {
 						<Box display="flex" gap="8px" alignItems="center">
 							<CalendarMonthIcon
 								sx={{
-									color : theme.palette.secondary.light,
+									color: theme.palette.secondary.light,
 								}}
 								fontSize="small"
 							/>

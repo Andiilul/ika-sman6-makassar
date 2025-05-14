@@ -40,7 +40,7 @@ export const HeroWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
 		alignItems: "center",
 		width: "100%",
 		backgroundSize: "cover",
-		backgroundImage: "url('/images/image.jpg')",
+		backgroundImage: "url('/images/test-hero.webp')",
 		backgroundPosition: "center",
 		"&::before": {
 			content: '""',
