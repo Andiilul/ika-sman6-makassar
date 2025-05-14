@@ -18,7 +18,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
 
   const large = useMediaQuery("(min-width:1024px)");
   const medium = useMediaQuery("(min-width:768px)");
-  const isHoverEnabled = large || medium; // ✅ Hover hanya di tablet & desktop
+  const isHoverEnabled = large ; // ✅ Hover hanya di tablet & desktop
 
   const [hover, setHover] = useState(false);
 

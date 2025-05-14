@@ -26,7 +26,7 @@ export const AlumniCard: React.FC<AlumniCardProps> = ({
   const large = useMediaQuery("(min-width:1024px)");
   const medium = useMediaQuery("(min-width:768px)");
 
-  const isHoverEnabled = medium || large;
+  const isHoverEnabled = medium;
 
   const handleClick = () => {
     router.push(`/directory/${alumni.id}`);
