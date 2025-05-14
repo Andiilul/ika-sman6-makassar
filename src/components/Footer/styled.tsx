@@ -10,6 +10,7 @@ export const FooterWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
 		width: "100vw",
 		padding: "16px", // mobile default
 		display: "flex",
+		boxShadow: "0px -1px 4px rgba(0, 0, 0, 0.25)",
 		alignItems: "center",
 		flexDirection: "column",
 		justifyContent: "center",

@@ -12,6 +12,6 @@ export interface IAlumni {
 	location: "makassar" | "non-makassar"; // Lokasi tugas
 	hobby: string; // Hobi
 	contact_number: string; // Nomor yang bisa dihubungi
-	image: string; // Nomor yang bisa dihubungi
-	imageURL: string; // URL gambar alumni
+	image: string ; // Nomor yang bisa dihubungi
+	imageURL: string | null; // URL gambar alumni
 }

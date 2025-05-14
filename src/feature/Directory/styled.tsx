@@ -80,3 +80,29 @@ export const DirectoryContainer: StyledComponent<BoxProps & { theme?: Theme }> =
 			// padding: "16px",
 		},
 	}));
+
+export const AlumniDetailWrapper = styled("div")(() => ({
+	display: "flex",
+	gap: "8px",
+	flexDirection: "column",
+	width: "100%",
+	"@media (min-width: 1024px)": {
+		gap: "32px",
+		flexDirection: "row",
+	},
+}));
+
+export const AlumniImageContainer = styled("div")(() => ({
+	position: "relative",
+	width: "100%",
+	aspectRatio: "16/9",
+	overflow: "hidden",
+	borderRadius: "8px",
+}));
+
+export const AlumniDetailContainer = styled("div")(() => ({
+	display: "flex",
+	flexDirection: "column",
+	gap: "16px",
+	width: "100%",
+}));

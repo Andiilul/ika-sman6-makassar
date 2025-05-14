@@ -36,7 +36,7 @@ export const AlumniCard: React.FC<AlumniCardProps> = ({
 		>
 			{/* Background Image */}
 			<Image
-				src={alumni.imageURL}
+				src={alumni.imageURL || ""}
 				alt={alumni.name}
 				fill
 				loader={directusImageLoader}

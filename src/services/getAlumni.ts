@@ -1,6 +1,6 @@
 import { IAlumni } from "@/interfaces/Alumni";
 import { directus } from "@/lib/directus";
-import { readFile, readItem, readItems } from "@directus/sdk";
+import { readFile, readItems } from "@directus/sdk";
 
 export const getAllAlumni = async (
 	limit: number,
@@ -106,11 +106,33 @@ export const getAlumniCount = async (
 
 export const getAlumniById = async (id: string): Promise<IAlumni | null> => {
 	try {
-		const result = await directus.request(readItem("alumni", id));
+		const result = await directus.request(
+			readItems("alumni", {
+				filter: { id: { _eq: id } },
+				limit: 1,
+			})
+		);
 
-		return result.length > 0 ? (result[0] as IAlumni) : null;
+		if (result.length === 0) return null;
+
+		const alumni = result[0] as IAlumni;
+
+		// Fetch image file URL if available
+		if (alumni.image) {
+			try {
+				const file = await directus.request(readFile(alumni.image));
+				alumni.imageURL = file.filename_disk;
+			} catch (err) {
+				console.warn(`Failed to read image for alumni ID ${id}:`, err);
+				alumni.imageURL = null;
+			}
+		} else {
+			alumni.imageURL = null;
+		}
+
+		return alumni;
 	} catch (error) {
-		console.error("Error fetching activity by ID:", error);
+		console.error("Error fetching alumni by ID:", error);
 		throw error;
 	}
 };
