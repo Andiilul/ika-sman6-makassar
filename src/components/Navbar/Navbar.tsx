@@ -34,43 +34,18 @@ import Image from "next/image";
 const NavbarContent: React.FC<{
 	showSticky: boolean;
 	toggleDrawer: () => void;
-}> = ({ showSticky, toggleDrawer }) => {
-	const pathname = usePathname();
+	isActive: (link: string) => boolean;
+}> = ({ showSticky, toggleDrawer, isActive }) => {
 	const theme = useTheme();
-
-	const isHome = pathname === "/";
 	const { mode, toggleTheme } = useThemeContext();
-	const isActive = (link: string) => pathname === link;
+	const pathname = usePathname();
+	const isHome = pathname === "/";
 	const large = useMediaQuery("(min-width:1024px)");
 	const medium = useMediaQuery("(min-width:768px)");
 
 	return (
 		<>
 			<Box display={"flex"} gap={large ? "32px" : "12px"} alignItems={"center"}>
-				{!large && (
-					<Button
-						aria-label="open menu"
-						onClick={toggleDrawer}
-						sx={{
-							display: "flex",
-							alignItems: "center",
-							justifyContent: "center",
-							width: "32px",
-							height: "32px",
-							minWidth: "32px",
-							padding: "0",
-							border: "1px solid",
-							borderColor: theme.palette.primary.main,
-						}}
-					>
-						<Menu
-							sx={{
-								fontSize: "16px",
-							}}
-						/>
-					</Button>
-				)}
-
 				<LogoBox>
 					<Image
 						src="/images/logo.png"
@@ -81,7 +56,7 @@ const NavbarContent: React.FC<{
 							height: large ? "42px" : medium ? "36px" : "30px",
 							width: "auto",
 						}}
-					/>{" "}
+					/>
 					<Typography
 						display={medium ? "block" : "none"}
 						fontSize={"14px"}
@@ -146,14 +121,11 @@ const NavbarContent: React.FC<{
 						fontWeight={600}
 						textTransform={"capitalize"}
 					>
-						Bergabung{" "}
+						Bergabung
 					</Typography>
-					<PersonAddAlt1
-						sx={{
-							fontSize: "16px",
-						}}
-					/>
+					<PersonAddAlt1 sx={{ fontSize: "16px" }} />
 				</Button>
+
 				<Button
 					onClick={toggleTheme}
 					color="primary"
@@ -175,13 +147,9 @@ const NavbarContent: React.FC<{
 								fontWeight={600}
 								display={medium ? "block" : "none"}
 							>
-								Light{" "}
+								Light
 							</Typography>
-							<LightMode
-								sx={{
-									fontSize: "16px",
-								}}
-							/>
+							<LightMode sx={{ fontSize: "16px" }} />
 						</Box>
 					) : (
 						<Box display={"flex"} gap={"4px"} alignItems={"center"}>
@@ -190,28 +158,50 @@ const NavbarContent: React.FC<{
 								fontWeight={600}
 								display={medium ? "block" : "none"}
 							>
-								Dark{" "}
+								Dark
 							</Typography>
-							<DarkMode
-								sx={{
-									fontSize: "16px",
-								}}
-							/>
+							<DarkMode sx={{ fontSize: "16px" }} />
 						</Box>
 					)}
 				</Button>
+
+				{!large && (
+					<Button
+						aria-label="open menu"
+						onClick={toggleDrawer}
+						sx={{
+							display: "flex",
+							alignItems: "center",
+							justifyContent: "center",
+							width: "32px",
+							height: "32px",
+							minWidth: "32px",
+							padding: "0",
+							border: "1px solid",
+							borderColor: theme.palette.primary.main,
+						}}
+					>
+						<Menu sx={{ fontSize: "16px" }} />
+					</Button>
+				)}
 			</NavActionBox>
 		</>
 	);
 };
 
 export const Navbar: React.FC = () => {
-	const [mounted, setMounted] = useState(false);
 	const pathname = usePathname();
 	const isHome = pathname === "/";
 	const large = useMediaQuery("(min-width:1024px)");
+	const medium = useMediaQuery("(min-width:768px)");
+	const theme = useTheme();
+
 	const [drawerOpen, setDrawerOpen] = useState(false);
 	const [showSticky, setShowSticky] = useState(false);
+	const [mounted, setMounted] = useState(false);
+
+	const isActive = (link: string) => pathname === link;
+	const { toggleTheme } = useThemeContext();
 
 	useEffect(() => {
 		if (large) setDrawerOpen(false);
@@ -234,24 +224,154 @@ export const Navbar: React.FC = () => {
 		<>
 			<Drawer
 				open={drawerOpen}
-				anchor="left"
+				anchor="top"
 				onClose={() => setDrawerOpen(false)}
 			>
-				<Box width={250} p={2}>
-					<Typography variant="h6" gutterBottom>
-						Menu
-					</Typography>
-					{menu.map((nav, index) => (
-						<Link key={index} href={nav.link} passHref>
-							<Button
-								fullWidth
-								onClick={() => setDrawerOpen(false)}
-								sx={{ justifyContent: "flex-start" }}
+				<Box
+					display={"flex"}
+					flexDirection={"column"}
+					width={"100%"}
+					bgcolor={theme.palette.background.paper}
+					height={"100%"}
+				>
+					<Box
+						padding={medium ? "16px" : "12px"}
+						display={"flex"}
+						gap={"8px"}
+						alignItems={"center"}
+						bgcolor={theme.palette.background.default}
+					>
+						<Box height={medium ? "36px" : "30px"} width="auto">
+							<Image
+								src="/images/logo.png"
+								alt="Logo IKA 6"
+								width={0}
+								height={0}
+								style={{ width: "auto", height: "100%" }}
+							/>
+						</Box>
+						<Typography
+							fontSize={"16px"}
+							fontWeight={600}
+							color={"text.primary"}
+						>
+							IKA SMAN 6 Makassar
+						</Typography>
+					</Box>
+
+					<Box
+						display="flex"
+						flexDirection="column"
+						gap={medium ? "16px" : "8px"}
+						padding={medium ? "16px" : "12px"}
+					>
+						{menu.map((nav, index) => (
+							<Link key={index} href={nav.link} passHref>
+								<Box
+									display="flex"
+									padding={medium ? "16px 8px" : "12px 6px"}
+									alignItems="center"
+									sx={{
+										color: isActive(nav.link)
+											? theme.palette.primary.main
+											: theme.palette.text.primary,
+										fontWeight: isActive(nav.link) ? 600 : 400,
+										transition: "all 0.2s ease-in-out",
+										borderRadius: "4px",
+
+										":hover": {
+											backgroundColor: theme.palette.background.default,
+										},
+									}}
+								>
+									{isActive(nav.link) && (
+										<PlayArrow sx={{ fontSize: "12px" }} />
+									)}
+									{nav.title}
+								</Box>
+							</Link>
+						))}
+					</Box>
+					<Box
+						height={"1px"}
+						bgcolor={theme.palette.divider}
+						width="100%"
+					></Box>
+					<Box padding={medium ? "16px" : "12px"}>
+						<Box
+							display="flex"
+							padding={medium ? "16px 8px" : "12px 6px"}
+							alignItems="center"
+							sx={{
+								color: theme.palette.text.primary,
+								fontWeight: 400,
+								transition: "all 0.2s ease-in-out",
+								borderRadius: "4px",
+								display: "flex",
+								alignItems: "center",
+								gap: "4px",
+								cursor: "pointer",
+
+								":hover": {
+									backgroundColor: theme.palette.background.default,
+								},
+							}}
+						>
+							<Typography
+								fontFamily={"Poppins"}
+								color={theme.palette.primary.dark}
 							>
-								{nav.title}
-							</Button>
-						</Link>
-					))}
+								Bergabung
+							</Typography>
+							<PersonAddAlt1
+								sx={{ fontSize: "16px", color: theme.palette.primary.dark }}
+							/>
+						</Box>
+						<Button
+							sx={{
+								padding: "0",
+								minWidth: "100%",
+								display: "flex",
+								gap: "4px",
+								height: "max-content",
+							}}
+							onClick={toggleTheme}
+						>
+							<Box
+								display="flex"
+								width="100%"
+								padding={medium ? "16px 8px" : "12px 6px"}
+								alignItems="center"
+								sx={{
+									color: theme.palette.text.primary,
+									fontWeight: 400,
+									transition: "all 0.2s ease-in-out",
+									borderRadius: "4px",
+									display: "flex",
+									alignItems: "center",
+									textTransform: "none",
+									gap: "4px",
+									cursor: "pointer",
+								}}
+							>
+								<Typography
+									fontFamily={"Poppins"}
+									color={theme.palette.primary.dark}
+								>
+									{theme.palette.mode === "dark" ? "Light" : "Dark"}
+								</Typography>
+								{theme.palette.mode === "dark" ? (
+									<LightMode
+										sx={{ fontSize: "16px", color: theme.palette.primary.dark }}
+									/>
+								) : (
+									<DarkMode
+										sx={{ fontSize: "16px", color: theme.palette.primary.dark }}
+									/>
+								)}
+							</Box>
+						</Button>
+					</Box>
 				</Box>
 			</Drawer>
 
@@ -260,6 +380,7 @@ export const Navbar: React.FC = () => {
 					<NavbarContent
 						showSticky={showSticky}
 						toggleDrawer={() => setDrawerOpen(true)}
+						isActive={isActive}
 					/>
 				</NavbarContainer>
 			</NavbarWrapper>
@@ -277,6 +398,7 @@ export const Navbar: React.FC = () => {
 							<NavbarContent
 								showSticky={showSticky}
 								toggleDrawer={() => setDrawerOpen(true)}
+								isActive={isActive}
 							/>
 						</NavbarContainer>
 					</NavbarWrapper>

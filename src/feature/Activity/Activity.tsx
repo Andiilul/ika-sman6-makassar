@@ -5,20 +5,22 @@ import { PageLayout } from "@/components/Page";
 import { PageHeader } from "@/components/Page/PageHeader";
 import { ActivityGridContainer } from "./styled";
 import { useState, useEffect } from "react";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { ActivityContainer } from "./styled";
 import { IActivity } from "@/interfaces/Kegiatan";
-import { ActivitySearch } from "./ActivitySearch";
 import { ActivityCard } from "./ActivityCard";
+import { ActivitySearch } from "./ActivitySearch";
 
 export const Activity: React.FC = () => {
 	const theme = useTheme();
 
 	// State
 	const [search, setSearch] = useState("");
-	const [dateRange, setDateRange] = useState<[string, string]>(["", ""]);
+	// const [dateRange, setDateRange] = useState<[string, string]>(["", ""]);
 	const [activities, setActivities] = useState<IActivity[]>([]);
 	const [loading, setLoading] = useState(false);
+
+	const [filterApply, setFilterApply] = useState<[string, string]>(["", ""]);
 
 	// Debounced search
 	const [debouncedSearch, setDebouncedSearch] = useState("");
@@ -34,8 +36,8 @@ export const Activity: React.FC = () => {
 			try {
 				const params = new URLSearchParams();
 				if (debouncedSearch) params.append("keyword", debouncedSearch);
-				if (dateRange[0]) params.append("minDate", dateRange[0]);
-				if (dateRange[1]) params.append("maxDate", dateRange[1]);
+				if (filterApply[0]) params.append("minDate", filterApply[0]);
+				if (filterApply[1]) params.append("maxDate", filterApply[1]);
 
 				const res = await fetch(`/api/activity?${params.toString()}`);
 				const data = await res.json();
@@ -48,7 +50,10 @@ export const Activity: React.FC = () => {
 		};
 
 		fetchActivities();
-	}, [debouncedSearch, dateRange]);
+	}, [debouncedSearch, filterApply]); // ✅ Remove dateRange, use filterApply
+
+	const large = useMediaQuery("(min-width:1024px)");
+	const medium = useMediaQuery("(min-width:768px)");
 
 	return (
 		<FlexBox flexDirection="column">
@@ -56,50 +61,73 @@ export const Activity: React.FC = () => {
 			<PageLayout>
 				<ActivityContainer>
 					{/* Section Header */}
-					<Box display="flex" gap="16px" mb={2}>
-						<Box display="flex" gap="2px" flexDirection="column">
+					<FlexBox>
+						<Box
+							display={medium ? "flex" : "none"}
+							gap={"2px"}
+							flexDirection={"column"}
+						>
 							<Box
 								sx={{
 									width: "12px",
 									height: "4px",
 									backgroundColor: theme.palette.primary.main,
 								}}
-							/>
+							></Box>
 							<Box
 								sx={{
 									width: "12px",
 									height: "4px",
 									backgroundColor: theme.palette.primary.main,
 								}}
-							/>
+							></Box>
 							<Box
 								sx={{
 									width: "12px",
-									height: "90px",
+									flex: "1",
 									background: `linear-gradient(to bottom, ${theme.palette.primary.main} 0%, transparent 100%)`,
 								}}
-							/>
+							></Box>
 						</Box>
+
 						<Box
-							display="flex"
-							flexDirection="column"
-							justifyContent="center"
-							gap="4px"
+							display={"flex"}
+							gap={"8px"}
+							padding={"12px 0"}
+							flexDirection={"column"}
 						>
-							<Typography fontSize="16px" fontWeight={600} color="secondary">
-								Kegiatan IKA SMA 6
+							<Typography fontSize={"14px"} fontWeight={600} color="secondary">
+								KEGIATAN IKA SMAN 6 MAKASSAR
 							</Typography>
-							<Typography fontSize="32px" fontWeight={600}>
-								Daftar Kegiatan
-							</Typography>
+							<Box display="flex" flexDirection="column" gap="4px">
+								{large ? (
+									<>
+										<Typography
+											fontSize="36px"
+											lineHeight="36px"
+											fontWeight={600}
+										>
+											Daftar Kegiatan
+										</Typography>
+									</>
+								) : (
+									<Typography
+										fontSize={medium ? "30px" : "24px"}
+										lineHeight={medium ? "30px" : "24px"}
+										fontWeight={600}
+									>
+										Daftar Kegiatan
+									</Typography>
+								)}
+							</Box>
 						</Box>
-					</Box>
+					</FlexBox>
 
 					{/* Search & Filter */}
 					<Box width={"100%"} mb={3}>
 						<ActivitySearch
 							onSearch={setSearch}
-							onDateRangeChange={(start, end) => setDateRange([start, end])}
+							onDateRangeChange={(start, end) => setFilterApply([start, end])}
 						/>
 					</Box>
 
@@ -110,8 +138,10 @@ export const Activity: React.FC = () => {
 						) : activities.length === 0 ? (
 							<Typography>Tidak ada kegiatan yang cocok.</Typography>
 						) : (
-							activities.map((act, index) => (
-								<ActivityCard key={index} activity={act} />
+							activities.map((act) => (
+								<>
+									<ActivityCard key={act.id} activity={act} />
+								</>
 							))
 						)}
 					</ActivityGridContainer>

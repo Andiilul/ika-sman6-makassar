@@ -6,25 +6,35 @@ export const getAllAlumni = async (
 	limit: number,
 	page: number,
 	keyword?: string,
-	gradYear?: number
+	gradYear?: number,
+	location?: string
 ) => {
 	try {
 		// Build filters
-		console.log("get alumni data");
 		const nameFilter =
 			keyword && keyword.trim() !== ""
 				? { name: { _icontains: keyword.trim() } }
 				: null;
 
 		const gradFilter = gradYear ? { graduation_year: { _eq: gradYear } } : null;
+		const locationFilter =
+			location === "makassar"
+				? { location: { _icontains: "makassar" } }
+				: location === "non-makassar"
+				? {
+						_and: [
+							{ location: { _ncontains: "makassar" } },
+							{ location: { _nnull: true } }, // Pastikan tidak null
+						],
+				  }
+				: null;
 
 		const filters = [];
 		if (nameFilter) filters.push(nameFilter);
 		if (gradFilter) filters.push(gradFilter);
+		if (locationFilter) filters.push(locationFilter);
 
 		const filter = filters.length > 0 ? { _and: filters } : {};
-
-		console.log("🟨 Directus filter used:", JSON.stringify(filter, null, 2));
 
 		// Fetch alumni
 		const result = await directus.request(
@@ -35,17 +45,12 @@ export const getAllAlumni = async (
 			})
 		);
 
-		console.log("get alumni data", result);
-
 		// Fetch image URLs
-
 		for (const i in result) {
 			if (result[i].image) {
 				try {
-					console.log("thiss iss image result", result[i].image);
 					const file = await directus.request(readFile(result[i].image));
 					result[i].imageURL = file.filename_disk;
-					console.log("ini", result[i].imageURL);
 				} catch (error) {
 					console.warn(
 						`⚠️ Failed to read image file for alumni ID ${result[i].id}:`,
@@ -57,7 +62,6 @@ export const getAllAlumni = async (
 			}
 		}
 
-		console.log("🟩 Final alumni result:", result);
 		return result;
 	} catch (error) {
 		console.error("❌ Error in getAllAlumni:", error);

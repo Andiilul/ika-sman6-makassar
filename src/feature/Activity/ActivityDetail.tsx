@@ -46,9 +46,6 @@ export const ActivityDetail: React.FC<ActivityDetailProps> = ({ id }) => {
 							<strong>Lokasi:</strong> {activity.location}
 						</p>
 						<p>
-							<strong>Kategori:</strong> {activity.activity_type}
-						</p>
-						<p>
 							<strong>Deskripsi:</strong> {activity.description}
 						</p>
 						<Box sx={{ position: "relative", width: "100%", height: "300px" }}>

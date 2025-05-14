@@ -1,5 +1,5 @@
-
 export interface IAlumni {
+	id: string; // ID alumni
 	name: string; // Nama lengkap
 	nisn: string; // NISN sekolah (bukti terdaftar)
 	gender: "male" | "female";

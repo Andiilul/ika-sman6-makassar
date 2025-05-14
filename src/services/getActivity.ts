@@ -52,7 +52,7 @@ export const getAllActivity = async (
 			}
 		}
 
-		console.log(result);
+		// console.log(result);
 		return result;
 	} catch (error) {
 		console.error("Error fetching activities:", error);

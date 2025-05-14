@@ -1,6 +1,13 @@
 "use client";
 
-import { alpha, Box, Link, Typography, useTheme } from "@mui/material";
+import {
+	alpha,
+	Box,
+	Link,
+	Typography,
+	useMediaQuery,
+	useTheme,
+} from "@mui/material";
 import { PageLayout } from "@/components/Page";
 import { PageHeader } from "@/components/Page/PageHeader";
 import { ContactUSContainer } from "./styled";
@@ -14,6 +21,9 @@ interface ContactUsProps {
 
 export const ContactUs: React.FC<ContactUsProps> = ({ globals }) => {
 	const theme = useTheme();
+
+	const large = useMediaQuery("(min-width:1024px)");
+	const medium = useMediaQuery("(min-width:768px)");
 	return (
 		<Box width={"100%"} display={"flex"} flexDirection={"column"}>
 			<PageHeader title="Kontak kami" />
@@ -32,13 +42,17 @@ export const ContactUs: React.FC<ContactUsProps> = ({ globals }) => {
 					<Box
 						display={"flex"}
 						width={"100%"}
-						gap={"64px"}
+						gap={large ? "64px" : medium ? "32px" : "16px"}
 						flexDirection={"column"}
 					>
-						<Box display={"flex"} gap={"64px"}>
+						<Box
+							display={"flex"}
+							flexDirection={large ? "row" : "column"}
+							gap={large ? "64px" : medium ? "32px" : "16px"}
+						>
 							<Box
 								flex={1}
-								padding={"32px"}
+								padding={large ? "32px" : medium ? "24px" : "16px"}
 								display={"flex"}
 								gap={"16px"}
 								alignItems={"center"}
@@ -50,17 +64,20 @@ export const ContactUs: React.FC<ContactUsProps> = ({ globals }) => {
 									}}
 								/>
 								<Box display={"flex"} flexDirection={"column"} gap={"8px"}>
-									<Typography fontWeight={600} fontSize={"16px"}>
+									<Typography
+										fontWeight={600}
+										fontSize={large ? "16px" : "14px"}
+									>
 										Call Center
 									</Typography>
-									<Typography fontWeight={600} fontSize={"12px"}>
+									<Typography fontWeight={500} fontSize={"12px"}>
 										{globals?.call_center}
 									</Typography>
 								</Box>
 							</Box>
 							<Box
 								flex={1}
-								padding={"32px"}
+								padding={large ? "32px" : medium ? "24px" : "16px"}
 								display={"flex"}
 								gap={"16px"}
 								alignItems={"center"}
@@ -72,19 +89,23 @@ export const ContactUs: React.FC<ContactUsProps> = ({ globals }) => {
 									}}
 								/>
 								<Box display={"flex"} flexDirection={"column"} gap={"8px"}>
-									<Typography fontWeight={600} fontSize={"16px"}>
+									<Typography
+										fontWeight={600}
+										fontSize={large ? "16px" : "14px"}
+									>
 										Email
 									</Typography>
-									<Typography fontWeight={600} fontSize={"12px"}>
-									{globals?.contact_email}
+									<Typography fontWeight={500} fontSize={"12px"}>
+										{globals?.contact_email}
 									</Typography>
 								</Box>
 							</Box>
 						</Box>
 						<Box display={"flex"} justifyContent={"center"}>
 							<Box
-								width={"calc(50% - 32px)"}
-								padding={"32px"}
+								minWidth={large ? "480px" : "min-content"}
+								width={large ? "calc(50% - 32px)" : "100%"}
+								padding={large ? "32px" : medium ? "24px" : "16px"}
 								display={"flex"}
 								gap={"16px"}
 								alignItems={"center"}
@@ -96,10 +117,13 @@ export const ContactUs: React.FC<ContactUsProps> = ({ globals }) => {
 									}}
 								/>
 								<Box display={"flex"} flexDirection={"column"} gap={"8px"}>
-									<Typography fontWeight={600} fontSize={"16px"}>
+									<Typography
+										fontWeight={600}
+										fontSize={large ? "16px" : "14px"}
+									>
 										Sekretariat IKA SMA 6 Makassar
 									</Typography>
-									<Typography fontWeight={600} fontSize={"12px"}>
+									<Typography fontWeight={500} fontSize={"12px"}>
 										Jalan Ir. Sutami, Makassar{" "}
 									</Typography>
 								</Box>
@@ -114,7 +138,10 @@ export const ContactUs: React.FC<ContactUsProps> = ({ globals }) => {
 								flex={1}
 								bgcolor={alpha(theme.palette.common.black, 0.5)}
 							></Box>
-							<Typography> Ikuti Sosial Media Kami</Typography>
+							<Typography fontSize={large ? "16px" : "14px"}>
+								{" "}
+								Ikuti Sosial Media Kami
+							</Typography>
 							<Box
 								display={"flex"}
 								height={"1px"}
@@ -131,7 +158,11 @@ export const ContactUs: React.FC<ContactUsProps> = ({ globals }) => {
 							{socialMedia.map((map, index) => (
 								<Link key={index} href={map.link}>
 									<Box>
-										<Typography fontSize={"48px"}>{map.icon}</Typography>
+										<Typography
+											fontSize={large ? "48px" : medium ? "36px" : "24px"}
+										>
+											{map.icon}
+										</Typography>
 									</Box>
 								</Link>
 							))}

@@ -1,10 +1,11 @@
 import { IAlumni } from "@/interfaces/Alumni";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { AlumniCardWrapper } from "./styled";
 import Image from "next/image";
 import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
 import { directusImageLoader } from "@/components/DirectusImage/DirectusImageLoader";
+import { motion } from "framer-motion";
 
 interface AlumniCardProps {
 	alumni: IAlumni;
@@ -20,6 +21,9 @@ export const AlumniCard: React.FC<AlumniCardProps> = ({
 	setHover,
 }) => {
 	const theme = useTheme();
+	const large = useMediaQuery("(min-width:1024px)");
+	const medium = useMediaQuery("(min-width:768px)");
+
 	return (
 		<AlumniCardWrapper
 			onMouseEnter={() => setHover(index)}
@@ -30,16 +34,16 @@ export const AlumniCard: React.FC<AlumniCardProps> = ({
 				position: "relative",
 			}}
 		>
-			{/* Gambar background */}
+			{/* Background Image */}
 			<Image
-				src={alumni.imageURL} // just the filename_disk
+				src={alumni.imageURL}
 				alt={alumni.name}
 				fill
 				loader={directusImageLoader}
 				style={{ objectFit: "cover" }}
 			/>
 
-			{/* Nama alumni (selalu tampil) */}
+			{/* Gender Icon */}
 			<Box
 				sx={{
 					position: "absolute",
@@ -52,8 +56,8 @@ export const AlumniCard: React.FC<AlumniCardProps> = ({
 			>
 				<Box
 					bgcolor={"rgba(0, 0, 0, 0.5)"}
-					height={"48px"}
-					width={"48px"}
+					height={large ? "48px" : medium ? "36px" : "24px"}
+					width={large ? "48px" : medium ? "36px" : "24px"}
 					borderRadius={"50%"}
 					display={"flex"}
 					justifyContent={"center"}
@@ -61,78 +65,79 @@ export const AlumniCard: React.FC<AlumniCardProps> = ({
 				>
 					{alumni.gender === "male" ? (
 						<MaleIcon
-							sx={{ color: theme.palette.primary.main, fontSize: "36px" }}
+							sx={{
+								color: theme.palette.primary.main,
+								fontSize: large ? "36px" : medium ? "24px" : "18px",
+							}}
 						/>
 					) : (
 						<FemaleIcon
-							sx={{ color: theme.palette.secondary.main, fontSize: "36px" }}
+							sx={{
+								color: theme.palette.secondary.main,
+								fontSize: large ? "36px" : medium ? "24px" : "18px",
+							}}
 						/>
 					)}
 				</Box>
 			</Box>
+
+			{/* Bottom Info Text (selalu tampil) */}
 			<Box
 				sx={{
 					position: "absolute",
 					bottom: 0,
 					left: 0,
 					right: 0,
-					px: 2,
-					py: 1,
+					padding: large ? "12px" : medium ? "8px" : "4px",
 					background: "rgba(0, 0, 0, 0.7)",
 					color: "white",
-					transition: "all 0.3s ease-out",
-					transform: hover === index ? "translateY(100%)" : "translateY(0)",
-					opacity: hover === index ? 0 : 1,
 				}}
 			>
-				<Typography fontSize={"16px"} fontWeight={600}>
+				<Typography
+					fontSize={large ? "16px" : medium ? "14px" : "12px"}
+					lineHeight={large ? "24px" : "auto"}
+					fontWeight={600}
+				>
 					{alumni.name}
 				</Typography>
-				<Typography fontSize={"12px"}>{alumni.profession}</Typography>
-				<Typography fontSize={"12px"}>
-					Tahun Lulusan : {alumni.graduation_year}
+				<Typography fontSize={large ? "14px" : medium ? "12px" : "10px"}>
+					{alumni.profession}
 				</Typography>
-				<Typography fontSize={"12px"}>
-					Lokasi Tugas :{" "}
-					{alumni.location === "makassar" ? "Makassar" : "Luar Makassar"}
+				<Typography fontSize={large ? "14px" : medium ? "12px" : "10px"}>
+					Tahun Lulusan: {alumni.graduation_year}
+				</Typography>
+				<Typography fontSize={large ? "14px" : medium ? "12px" : "10px"}>
+					Lokasi Tugas:{" "}
+					{alumni.location === "non-makassar" ? "Luar Makassar" : "Makassar"}
 				</Typography>
 			</Box>
 
-			{/* Hover content tambaha\n (jika ada) */}
-			<Box
-				sx={{
-					transition: "all 0.3s ease-out",
-					transform: hover === index ? "translateY(0)" : "translateY(100%)",
-					opacity: hover === index ? 1 : 0,
+			{/* Slide Up Overlay (hover) */}
+			<motion.div
+				initial={{ y: "100%", opacity: 0 }}
+				animate={
+					hover === index ? { y: 0, opacity: 1 } : { y: "100%", opacity: 0 }
+				}
+				transition={{ duration: 0.2, ease: "easeInOut" }}
+				style={{
 					position: "absolute",
-					width: "100%",
-					height: "100%",
+					top: 0,
+					left: 0,
+					right: 0,
+					bottom: 0,
 					display: "flex",
-					flexDirection: "column",
-					gap: "4px",
-					background: "rgba(0, 0, 0, 0.9)",
-					color: "white",
-					padding: "16px",
-					overflowY: "auto",
+					justifyContent: "center",
+					alignItems: "center",
+					backgroundColor: "rgba(0, 0, 0, 0.7)",
+					color: "#fff",
+					zIndex: 10,
+					backdropFilter: "blur(2px)",
 				}}
 			>
-				<Typography fontSize={"14px"} fontWeight={700}>
-					{alumni.name}
+				<Typography fontWeight={600} fontSize={"20px"}>
+					Lihat Selengkapnya
 				</Typography>
-				<Typography fontSize="12px">NISN: {alumni.nisn}</Typography>
-				<Typography fontSize="12px">Jenis Kelamin: {alumni.gender}</Typography>
-				<Typography fontSize="12px">
-					Tahun Lulusan: {alumni.graduation_year}
-				</Typography>
-				<Typography fontSize="12px">Suku: {alumni.ethnicity}</Typography>
-				<Typography fontSize="12px">Domisili: {alumni.domicile}</Typography>
-				<Typography fontSize="12px">Alamat: {alumni.address}</Typography>
-				<Typography fontSize="12px">Kontak: {alumni.contact_number}</Typography>
-				<Typography fontSize="12px">Profesi: {alumni.profession}</Typography>
-				<Typography fontSize="12px">Jabatan: {alumni.position}</Typography>
-				<Typography fontSize="12px">Lokasi Tugas: {alumni.location}</Typography>
-				<Typography fontSize="12px">Hobi: {alumni.hobby}</Typography>
-			</Box>
+			</motion.div>
 		</AlumniCardWrapper>
 	);
 };

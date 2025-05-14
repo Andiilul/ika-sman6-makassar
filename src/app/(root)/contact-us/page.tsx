@@ -5,7 +5,6 @@ import { getGlobals } from "@/services/getGlobal";
 export default async function ContactUsPage() {
 	const globals: IGlobal | null = await getGlobals();
 
-  console.log(globals?.call_center);
 
 	return <ContactUs globals={globals} />;
 }

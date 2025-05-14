@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/image";
 import { IActivity } from "@/interfaces/Kegiatan";
 import { useState } from "react";
@@ -16,6 +16,9 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
 	const theme = useTheme();
 	const [hover, setHover] = useState(false);
 	const router = useRouter();
+
+	const large = useMediaQuery("(min-width:1024px)");
+	const medium = useMediaQuery("(min-width:768px)");
 	return (
 		<Box
 			onMouseEnter={() => setHover(true)}
@@ -52,7 +55,10 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
 			</Box>
 
 			{/* Konten */}
-			<Box padding={"12px"} bgcolor={theme.palette.background.paper}>
+			<Box
+				padding={large ? "12px" : medium ? "8px" : "4px"}
+				bgcolor={theme.palette.background.paper}
+			>
 				<Typography fontWeight={600}>{activity.title}</Typography>
 				<Typography variant="body2" color="secondary">
 					{activity.location} -{" "}

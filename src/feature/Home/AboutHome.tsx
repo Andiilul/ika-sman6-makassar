@@ -43,13 +43,13 @@ export const AboutHome: React.FC = () => {
 					<Box
 						sx={{
 							width: "12px",
-							height: "90px",
+							flex: "1",
 							background: `linear-gradient(to bottom, ${theme.palette.primary.main} 0%, transparent 100%)`,
 						}}
 					></Box>
 				</Box>
 
-				<Box display={"flex"} gap={"8px"} flexDirection={"column"}>
+				<Box display={"flex"} gap={"8px"} padding={"12px 0a"} flexDirection={"column"}>
 					<Typography fontSize={"14px"} fontWeight={600} color="secondary">
 						TENTANG KAMI
 					</Typography>
