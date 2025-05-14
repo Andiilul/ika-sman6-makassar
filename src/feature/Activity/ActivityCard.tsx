@@ -43,7 +43,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
 			>
 				<Image
 					loader={directusImageLoader}
-					src={activity.imageURL}
+					src={activity.imageURL ?? ""}
 					alt={activity.title}
 					fill
 					style={{

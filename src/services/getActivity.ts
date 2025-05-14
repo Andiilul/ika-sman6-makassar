@@ -94,7 +94,6 @@ export const getActivityCount = async (
 	// Pastikan nilainya adalah number, default ke 0 jika null
 	return Number(result[0].count ?? 0);
 };
-
 export const getActivityById = async (
 	id: string
 ): Promise<IActivity | null> => {
@@ -102,10 +101,28 @@ export const getActivityById = async (
 		const result = await directus.request(
 			readItems("activity", {
 				filter: { id: { _eq: id } },
+				limit: 1,
 			})
 		);
 
-		return result.length > 0 ? (result[0] as IActivity) : null;
+		if (result.length === 0) return null;
+
+		const activity = result[0] as IActivity;
+
+		// Fetch image file URL if available
+		if (activity.image) {
+			try {
+				const file = await directus.request(readFile(activity.image));
+				activity.imageURL = file.filename_disk;
+			} catch (err) {
+				console.warn(`Failed to read image for activity ID ${id}:`, err);
+				activity.imageURL = null;
+			}
+		} else {
+			activity.imageURL = null;
+		}
+
+		return activity;
 	} catch (error) {
 		console.error("Error fetching activity by ID:", error);
 		throw error;

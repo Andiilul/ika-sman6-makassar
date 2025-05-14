@@ -6,5 +6,5 @@ export interface IActivity {
 	date: string; // Format ISO string, contoh: "2025-04-28"
 	location: string | undefined; // Tempat kegiatan
 	image: string; // Thumbnail / cover kegiatan
-	imageURL: string; // URL gambar
+	imageURL: string | null; // URL gambar
 }
