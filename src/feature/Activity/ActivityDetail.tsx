@@ -66,14 +66,15 @@ export const ActivityDetail: React.FC<ActivityDetailProps> = ({ id }) => {
 			<ActivityDetailWrapper>
 				{activity.imageURL && (
 					<ActivityImageContainer>
-						<Image
-							loader={directusImageLoader}
-							src={activity.imageURL ?? ""}
-							alt={activity.title}
-							fill
-							unoptimized // ✅ Tambahkan ini
-							style={{ objectFit: "cover" }}
-						/>
+				<Image
+					loader={directusImageLoader}
+					src={activity.imageURL ?? ""}
+					alt={activity.title}
+					fill
+					style={{
+						objectFit: "cover",
+					}}
+				/>
 					</ActivityImageContainer>
 				)}
 
