@@ -60,7 +60,7 @@ export const GoalsDivider: StyledComponent<BoxProps & { theme?: Theme }> =
 			width: "160px",
 		},
 		["@media (min-width: 768px)"]: {
-			height: "240px",
+			minHeight: "100%",
 			width: "120px",
 		},
 	}));

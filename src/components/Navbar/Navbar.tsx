@@ -24,7 +24,7 @@ import {
 	DarkMode,
 	LightMode,
 	Menu,
-	PersonAddAlt1,
+	// PersonAddAlt1,
 	PlayArrow,
 } from "@mui/icons-material";
 import { useThemeContext } from "@/app/provider";
@@ -101,7 +101,7 @@ const NavbarContent: React.FC<{
 			</Box>
 
 			<NavActionBox>
-				<Button
+				{/* <Button
 					color="primary"
 					variant="outlined"
 					sx={{
@@ -124,7 +124,7 @@ const NavbarContent: React.FC<{
 						Bergabung
 					</Typography>
 					<PersonAddAlt1 sx={{ fontSize: "16px" }} />
-				</Button>
+				</Button> */}
 
 				<Button
 					onClick={toggleTheme}
@@ -298,7 +298,7 @@ export const Navbar: React.FC = () => {
 						width="100%"
 					></Box>
 					<Box padding={medium ? "16px" : "12px"}>
-						<Box
+						{/* <Box
 							display="flex"
 							padding={medium ? "16px 8px" : "12px 6px"}
 							alignItems="center"
@@ -326,7 +326,7 @@ export const Navbar: React.FC = () => {
 							<PersonAddAlt1
 								sx={{ fontSize: "16px", color: theme.palette.primary.dark }}
 							/>
-						</Box>
+						</Box> */}
 						<Button
 							sx={{
 								padding: "0",

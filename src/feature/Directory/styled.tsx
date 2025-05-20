@@ -83,21 +83,19 @@ export const DirectoryContainer: StyledComponent<BoxProps & { theme?: Theme }> =
 
 export const AlumniDetailWrapper = styled("div")(() => ({
 	display: "flex",
-	gap: "8px",
+	gap: "32px",
 	flexDirection: "column",
+	padding: "32px 0",
 	width: "100%",
 	"@media (min-width: 1024px)": {
-		gap: "32px",
+		gap: "128px",
+		padding: "128px 0",
 		flexDirection: "row",
 	},
-}));
-
-export const AlumniImageContainer = styled("div")(() => ({
-	position: "relative",
-	width: "100%",
-	aspectRatio: "16/9",
-	overflow: "hidden",
-	borderRadius: "8px",
+	["@media (min-width: 768px)"]: {
+		padding: "64px 0",
+		gap: "64px",
+	},
 }));
 
 export const AlumniDetailContainer = styled("div")(() => ({

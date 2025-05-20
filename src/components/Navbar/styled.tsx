@@ -8,7 +8,7 @@ import {
 	TypographyProps,
 	Switch,
 } from "@mui/material";
-import { Theme } from "@mui/material/styles";
+import { alpha, Theme } from "@mui/material/styles";
 import { StyledComponent } from "@emotion/styled";
 import { motion } from "framer-motion";
 
@@ -31,8 +31,9 @@ export const NavbarWrapper = styled(motion(Box), {
 	padding: "16px", // default mobile
 	backgroundColor:
 		variant === "sticky" || variant === "fixed"
-			? theme.palette.background.default
+			? alpha(theme.palette.background.paper, 0.8)
 			: "transparent",
+	backdropFilter: variant !== "initial" ? "blur(10px)" : "none",
 	boxShadow: variant === "sticky" ? "0px 1px 4px rgba(0,0,0,0.2)" : "none",
 
 	["@media (min-width: 768px)"]: {

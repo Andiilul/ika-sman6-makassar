@@ -84,9 +84,10 @@ export const AboutHome: React.FC = () => {
 					position={"relative"}
 				>
 					<Image
-						src={"/images/test-hero.webp"}
+						src={"/images/about-1.jpg"}
 						style={{
 							borderRadius: "12px",
+							objectFit: "cover",
 						}}
 						alt=""
 						fill

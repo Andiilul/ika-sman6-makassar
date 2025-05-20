@@ -5,7 +5,7 @@ import { StyledComponent } from "@emotion/styled";
 // Define the type for FooterContainer
 export const FooterWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
 	styled(Box)(({ theme }) => ({
-		backgroundColor: theme.palette.background.default,
+		backgroundColor: theme.palette.background.paper,
 		color: theme.palette.text.primary,
 		width: "100vw",
 		padding: "16px", // mobile default

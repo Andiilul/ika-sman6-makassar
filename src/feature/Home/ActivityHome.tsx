@@ -43,7 +43,14 @@ export const ActivityHome = () => {
 						display={"flex"}
 						alignItems={"flex-end"}
 					>
-						<Image src="/images/test-hero.webp" fill alt="" />
+						<Image
+							src="/images/about-2.jpg"
+							fill
+							alt=""
+							style={{
+								objectFit: "cover",
+							}}
+						/>
 						<Box
 							bgcolor={alpha(theme.palette.primary.main, 0.5)}
 							position={"absolute"}
