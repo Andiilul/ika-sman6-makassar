@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Box, Typography, CircularProgress } from "@mui/material";
 import { PageLayout } from "@/components/Page";
 import { NotFound } from "../NotFound";
-import { AlumniDetailWrapper, AlumniDetailContainer, AlumniImageContainer } from "./styled";
+import { AlumniDetailWrapper, AlumniDetailContainer } from "./styled";
 import { directusImageLoader } from "@/components/DirectusImage/DirectusImageLoader";
 
 interface AlumniDetailProps {
