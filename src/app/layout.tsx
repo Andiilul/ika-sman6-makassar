@@ -1,5 +1,6 @@
-import "./globals.css";
-import { Alike, Inter, Poppins } from "next/font/google";
+// app/layout.tsx (RootLayout, server component)
+
+import { Inter, Poppins, Alike } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const poppins = Poppins({
@@ -12,6 +13,7 @@ const alike = Alike({
 	weight: ["400"],
 	variable: "--font-alike",
 });
+
 export default function RootLayout({
 	children,
 }: {

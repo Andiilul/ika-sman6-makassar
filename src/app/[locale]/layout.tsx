@@ -1,27 +1,16 @@
-"use client";
+// app/[locale]/layout.tsx
 
-import { NextIntlClientProvider } from "next-intl";
-import ClientTransitionWrapper from "../ClientTransitionWrapper";
-import Providers from "../provider";
-import MainLayout from "./mainLayout";
+import LocaleHelper from "./localeHelper";
 
 interface LocaleLayoutProps {
-	children: React.ReactNode;
-	params: { locale: string };
+  children: React.ReactNode;
+  params: { locale: string };
 }
 
-export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
-	return (
-		<html lang={params.locale}>
-			<body>
-				<NextIntlClientProvider locale={params.locale}>
-					<Providers>
-						<ClientTransitionWrapper>
-							<MainLayout>{children}</MainLayout>
-						</ClientTransitionWrapper>
-					</Providers>
-				</NextIntlClientProvider>
-			</body>
-		</html>
-	);
+export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
+  const { locale } = params;
+  // Import pesan sesuai locale, contoh import dinamis
+  const messages = (await import(`@/messages/${locale}.json`)).default;
+
+  return <LocaleHelper locale={locale} messages={messages}>{children}</LocaleHelper>;
 }

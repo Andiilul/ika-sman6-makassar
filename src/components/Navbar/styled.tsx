@@ -99,6 +99,7 @@ export const NavItem: StyledComponent<TypographyProps & { theme?: Theme }> =
 		fontSize: "14px",
 		fontWeight: "300",
 		transition: "200ms",
+		textDecoration: "none", // Add this line to remove the underline
 		":hover": {
 			color: theme.palette.secondary.main,
 		},

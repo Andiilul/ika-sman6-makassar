@@ -112,23 +112,31 @@ export const Footer: React.FC = () => {
 						</Typography>
 						<QuickLinks>
 							{menu.map((map, index) => (
-								<Box key={index} sx={{ cursor: "pointer" }}>
-									<Typography
-										color={theme.palette.primary.main}
-										fontFamily={"Poppins"}
-										fontSize={large ? "14px" : medium ? "14px" : "14px"}
-										fontWeight={"400"}
-										sx={{
-											transition: "200ms",
-											":hover": {
-												color: theme.palette.text.primary,
+								<Link
+									key={index}
+									href={`/${map.path}`}
+									passHref
+									style={{ textDecoration: "none" }}
+								>
+									<Box sx={{ cursor: "pointer" }}>
+										<Typography
+											color={theme.palette.primary.main}
+											fontFamily={"Poppins"}
+											fontSize={large ? "14px" : medium ? "14px" : "14px"}
+											fontWeight={"400"}
+											sx={{
 												transition: "200ms",
-											},
-										}}
-									>
-										{map.title}
-									</Typography>
-								</Box>
+												":hover": {
+													color: theme.palette.text.primary,
+													transition: "200ms",
+													textDecoration: "none",
+												},
+											}}
+										>
+											{map.title}
+										</Typography>
+									</Box>
+								</Link>
 							))}
 						</QuickLinks>
 					</Box>

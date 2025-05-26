@@ -116,7 +116,8 @@ const NavbarContent: React.FC<{
 
 				<NavbarMenuList display={"flex"}>
 					{menu.map((nav, index) => (
-						<Link key={index} href={nav.path} passHref>
+						<Link key={index} href={nav.path} passHref style={{ textDecoration: "none" }}>
+							{/* Apply textDecoration directly to the NavItem within the Link */}
 							<NavItem
 								display="flex"
 								alignItems="center"
@@ -130,6 +131,8 @@ const NavbarContent: React.FC<{
 										: theme.palette.text.primary,
 									fontWeight: isActive(nav.path) ? 600 : 400,
 									transition: "all 0.2s ease-in-out",
+									// Ensure textDecoration: "none" is here as well, in case Link overrides it
+									textDecoration: "none",
 								}}
 							>
 								{isActive(nav.path) && <PlayArrow sx={{ fontSize: "12px" }} />}
@@ -364,7 +367,7 @@ export const Navbar: React.FC = () => {
 						padding={medium ? "16px" : "12px"}
 					>
 						{menu.map((nav, index) => (
-							<Link key={index} href={nav.path} passHref>
+							<Link key={index} href={nav.path} passHref style={{ textDecoration: "none" }}>
 								<Box
 									display="flex"
 									padding={medium ? "16px 8px" : "12px 6px"}
@@ -376,6 +379,7 @@ export const Navbar: React.FC = () => {
 										fontWeight: isActive(nav.path) ? 600 : 400,
 										transition: "all 0.2s ease-in-out",
 										borderRadius: "4px",
+										textddecoration: "none",
 
 										":hover": {
 											backgroundColor: theme.palette.background.default,
