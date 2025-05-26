@@ -12,17 +12,14 @@ const alike = Alike({
 	weight: ["400"],
 	variable: "--font-alike",
 });
-
 export default function RootLayout({
 	children,
-	params,
 }: {
 	children: React.ReactNode;
-	params: { locale: string };
 }) {
 	return (
 		<html
-			lang={params.locale}
+			lang="id"
 			className={`${inter.variable} ${poppins.variable} ${alike.variable}`}
 		>
 			<head>
