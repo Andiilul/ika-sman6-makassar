@@ -7,14 +7,17 @@ import { PageHeader } from "@/components/Page/PageHeader";
 import { AboutContainer } from "./styled";
 import Goals from "./Goals";
 import Image from "next/image";
+import { Teams } from "./Teams";
+import { useTranslations } from "next-intl";
 
 export const About: React.FC = () => {
 	const large = useMediaQuery("(min-width:1024px)");
 	const medium = useMediaQuery("(min-width:768px)");
 	const theme = useTheme();
+	const t = useTranslations("AboutPage");
 	return (
 		<FlexBox flexDirection={"column"}>
-			<PageHeader title="Tentang Kami" />
+			<PageHeader title={t("title")} />
 
 			<PageLayout>
 				<Box display={"flex"} flexDirection={"column"}>
@@ -37,7 +40,7 @@ export const About: React.FC = () => {
 								>
 									<Box display={"flex"} alignItems={"center"} height={"30px"}>
 										<Typography fontWeight={600} color="primary">
-											TENTANG IKA SMA 6 MAKASSAR
+											{t("subtitle1")}
 										</Typography>
 									</Box>
 									<Box
@@ -101,17 +104,13 @@ export const About: React.FC = () => {
 											color="primary"
 										>
 											{" "}
-											Menyatukan
+											{t("catch2")}
 										</Typography>{" "}
 										Alumni
 									</Typography>
 
 									<Typography fontSize={medium ? "16px" : "14px"}>
-										Ikatan Alumni SMA Negeri 6 Makassar adalah organisasi yang
-										dibentuk oleh para alumni SMA Negeri 6 Makassar. Organisasi
-										ini bertujuan untuk menjalin silaturahmi, meningkatkan
-										networking, dan berkontribusi dalam pembangunan sekolah dan
-										masyarakat.
+										{t("text2")}
 									</Typography>
 								</Box>
 							</Box>
@@ -120,7 +119,7 @@ export const About: React.FC = () => {
 							<Box
 								position="relative"
 								width="100%"
-								height={large ? "360px" :medium? "240px" :"160px"}
+								height={large ? "360px" : medium ? "240px" : "160px"}
 								borderRadius="12px"
 								overflow="hidden"
 							>
@@ -135,6 +134,7 @@ export const About: React.FC = () => {
 							</Box>
 						</Box>
 					</AboutContainer>
+					<Teams />
 					<Goals />
 				</Box>
 			</PageLayout>

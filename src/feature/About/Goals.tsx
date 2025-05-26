@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import {
 	GoalsContainer,
 	GoalsContent,
@@ -9,35 +9,42 @@ import {
 } from "./styled";
 import Image from "next/image";
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-
-const goals = [
-	{
-		title: "Menjaga Silaturahmi",
-		desc: "Mengadakan kegiatan reuni, pertemuan, dan kegiatan sosial lainnya untuk mempererat hubungan antara alumni.",
-		image: "/images/test-hero.webp",
-	},
-	{
-		title: "Memberikan Kontribusi kepada Sekolah",
-		desc: "Memberikan bantuan, baik dalam bentuk dana, fasilitas, maupun program-program yang mendukung peningkatan kualitas pendidikan di SMA Negeri 6 Makassar.",
-		image: "/images/test-hero.webp",
-	},
-	{
-		title: "Meningkatkan Networking",
-		desc: "Membantu alumni untuk mengembangkan jaringan bisnis, profesional, dan sosial mereka.",
-		image: "/images/test-hero.webp",
-	},
-	{
-		title: "Membantu Alumni yang Membutuhkan",
-		desc: "Mengadakan program-program bantuan sosial untuk membantu alumni yang mengalami kesulitan.",
-		image: "/images/test-hero.webp",
-	},
-];
+import { useTranslations } from "next-intl";
 
 const Goals = () => {
 	const theme = useTheme();
 
 	const large = useMediaQuery("(min-width:1024px)");
 	const medium = useMediaQuery("(min-width:768px)");
+	const t = useTranslations("AboutPage");
+
+	const goals = useMemo(
+		() => [
+			{
+				title: t("goals1"),
+				desc: t("gtext1"),
+				image: "/images/test-hero.webp",
+			},
+			{
+				title: t("goals2"),
+				desc: t("gtext2"),
+				image: "/images/test-hero.webp",
+			},
+			{
+				title: t("goals3"),
+				desc: t("gtext3"),
+				image: "/images/test-hero.webp",
+			},
+			{
+				title: t("goals4"),
+				desc: t("gtext4"),
+				image: "/images/test-hero.webp",
+			},
+		],
+		[t] // dependencies
+	);
+
+
 	return (
 		<GoalsWrapper>
 			<Typography
@@ -48,7 +55,7 @@ const Goals = () => {
 				fontSize={large ? "36px" : medium ? "30px" : "24px"}
 				fontWeight={600}
 			>
-				Tujuan
+				{t("goals")}
 				<Typography
 					component={"span"}
 					color={theme.palette.text.primary}

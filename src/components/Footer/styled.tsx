@@ -60,7 +60,6 @@ export const QuickLinks: StyledComponent<BoxProps & { theme?: Theme }> = styled(
 	},
 }));
 
-
 export const FooterRight: StyledComponent<BoxProps & { theme?: Theme }> =
 	styled(FooterBox)(() => ({
 		display: "grid",

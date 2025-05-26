@@ -14,6 +14,7 @@ import { ContactUSContainer } from "./styled";
 import { LocationCity, Mail, Phone } from "@mui/icons-material";
 import { socialMedia } from "@/constants/socialMedia";
 import { IGlobal } from "@/interfaces/Global";
+import { useTranslations } from "next-intl";
 
 interface ContactUsProps {
 	globals: IGlobal | null;
@@ -24,9 +25,10 @@ export const ContactUs: React.FC<ContactUsProps> = ({ globals }) => {
 
 	const large = useMediaQuery("(min-width:1024px)");
 	const medium = useMediaQuery("(min-width:768px)");
+	const t = useTranslations("ContactPage");
 	return (
 		<Box width={"100%"} display={"flex"} flexDirection={"column"}>
-			<PageHeader title="Kontak kami" />
+			<PageHeader title={t("title")} />
 			<PageLayout>
 				<ContactUSContainer>
 					<Box
@@ -36,7 +38,7 @@ export const ContactUs: React.FC<ContactUsProps> = ({ globals }) => {
 						justifyContent={"center"}
 					>
 						<Typography fontSize={"24px"} fontWeight={"500"}>
-							Kontak kami
+							{t("title")}
 						</Typography>
 					</Box>
 					<Box
@@ -139,8 +141,7 @@ export const ContactUs: React.FC<ContactUsProps> = ({ globals }) => {
 								bgcolor={alpha(theme.palette.common.black, 0.5)}
 							></Box>
 							<Typography fontSize={large ? "16px" : "14px"}>
-								{" "}
-								Ikuti Sosial Media Kami
+								{t("followus")}{" "}
 							</Typography>
 							<Box
 								display={"flex"}

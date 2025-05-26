@@ -1,0 +1,87 @@
+{
+  "Footer": {
+    "catchphrase": "Gerbang Koneksi Jangka Panjang",
+    "navigate": "Navigasi",
+    "contactus": "Kontak Kami",
+    "followus": "Ikuti Media Sosial Kami untuk Mendapatkan Informasi Terbaru tentang Perkembangan Kami"
+  },
+  "notFound": {
+    "title": "Oops! Halaman Tidak Ditemukan",
+    "sub1":  "Halaman yang Anda cari tidak ditemukan. Mohon maaf",
+    "sub2":"Coba buka halaman lain. Terima kasih...",
+    "button1":"Beranda",
+    "button2":"Kembali"
+  },
+  "HomePage": {
+    "title": "Menyatukan Alumni dari Berbagai Generasi",
+    "about1": "TENTANG KAMI",
+    "about2": "IKA SMA Negeri 6 Makassar adalah organisasi alumni lintas generasi yang bertujuan mempererat silaturahmi, membangun jaringan, dan berkontribusi bagi sekolah serta masyarakat.",
+    "catch1":" Dari Alumni, Oleh Alumni",
+    "catch2":"Untuk Masa Depan",
+    "section2":"Bersama, Kita Terhubung",
+    "activity1":"Aktivitas dan Kebersamaan",
+    "activity2":"Di balik setiap reuni, aksi sosial, dan pertemuan alumni, ada semangat untuk terus terhubung dan tumbuh bersama. Kami percaya, kebersamaan adalah kunci dari komunitas yang hidup.",
+    "activity3":"Lihat Aktivitas Kami",
+    "alumni1":"Jaringan Alumni SMA 6 Makassar",
+    "alumni2":"Ratusan alumni dari berbagai angkatan dan latar belakang kini terhubung dalam satu komunitas. Dari yang baru lulus hingga profesional senior — semua ada di sini, dan siap saling mendukung.",
+    "alumni3":"Telusuri Alumni",
+    "joinus":"Jadi Bagian dari Keluarga Alumni",
+    "joinus2":"Bangun kembali koneksi, kenangan, dan kolaborasi lintas generasi bersama keluarga besar SMA 6 Makassar.",
+    "joinus3":"Daftar Sebagai Alumni"
+  },
+  "AboutPage": {
+    "title": "Tentang Kami",
+    "subtitle1": "TENTANG IKA SMA 6 MAKASSAR",
+    "catch2": "Menyatukan",
+    "text2": "Ikatan Alumni SMA Negeri 6 Makassar adalah organisasi yang dibentuk oleh para alumni SMA Negeri 6 Makassar. Organisasi ini bertujuan untuk menjalin silaturahmi, meningkatkan networking, dan berkontribusi dalam pembangunan sekolah dan masyarakat.",
+    "goals": "Tujuan",
+    "goals1": "Menjaga Silaturahmi",
+    "gtext1":"Mengadakan kegiatan reuni, pertemuan, dan kegiatan sosial lainnya untuk mempererat hubungan antara alumni.",
+    "goals2": "Memberikan Kontribusi kepada Sekolah",
+    "gtext2":"Memberikan bantuan, baik dalam bentuk dana, fasilitas, maupun program-program yang mendukung peningkatan kualitas pendidikan di SMA Negeri 6 Makassar.",
+    "goals3": "Meningkatkan Networking",
+    "gtext3":"Membantu alumni untuk mengembangkan jaringan bisnis, profesional, dan sosial mereka.",
+    "goals4": "Membantu Alumni yang Membutuhkan",
+    "gtext4": "Mengadakan program-program bantuan sosial untuk membantu alumni yang mengalami kesulitan."
+  },
+
+  "ActivitiesPage": {
+    "title": "Kegiatan",
+    "subtitle1": "KEGIATAN IKA SMA 6 MAKASSAR",
+    "subtitle2": "Daftar Kegiatan",
+    "search": "Cari Nama Kegiatan",
+    "filter1": "Dari Tanggal",
+    "filter2": "Hingga Tanggal"
+  },
+  "DirectoryPage": {
+    "title": "Direktori",
+    "subtitle1": "DIREKTORI ALUMNI",
+    "subtitle2": "Daftar Alumni SMAN 6 Makassar",
+    "search": "Cari Nama Alumni",
+    "filter1": "Tahun Kelulusan",
+    "filter2": "Lokasi",
+    "nonmks" : "Luar Makassar"
+  },
+  "ContactPage": {
+    "title": "Kontak Kami",
+    "basecamp": "Sekretariat IKA SMA 6 Makassar",
+    "followus": "Ikuti Sosial Media Kami"
+  },
+  "Global":{
+    "seeMore": "Lihat Selengkapnya",
+    "search": "Cari",
+    "next": "Selanjutnya",
+    "previous": "Sebelumnya",
+    "loading": "Memuat...",
+    "nodata": "Tidak ada data yang ditemukan",
+    "learnMore": "Pelajari Selengkapnya ",
+    "apply":"Terapkan"
+  },
+  "Menu": {
+    "home": "Beranda",
+    "about": "Tentang Kami",
+    "activity": "Kegiatan",
+    "directory": "Direktori",
+    "contact": "Kontak Kami"
+}}
+

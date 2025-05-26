@@ -2,10 +2,13 @@
 
 import { Box, Button, Typography, useMediaQuery } from "@mui/material";
 import { JoinUsWrapper } from "./styled";
+import { useTranslations } from "next-intl";
 
 export const JoinUs: React.FC = () => {
 	const large = useMediaQuery("(min-width:1024px)");
 	const medium = useMediaQuery("(min-width:768px)");
+
+	const t = useTranslations("HomePage");
 	return (
 		<JoinUsWrapper>
 			<Box
@@ -22,15 +25,14 @@ export const JoinUs: React.FC = () => {
 					fontSize={large ? "36px" : medium ? "30px" : "24px"}
 					fontWeight={600}
 				>
-					Jadi Bagian dari Keluarga Alumni
+					{t("joinus")}
 				</Typography>
 				<Typography
 					textAlign={"center"}
 					fontSize={large ? "16px" : "14px"}
 					fontWeight={200}
 				>
-					Bangun kembali koneksi, kenangan, dan kolaborasi lintas generasi
-					bersama keluarga besar SMA 6 Makassar.
+					{t("joinus2")}
 				</Typography>
 				<Button
 					size={large ? "large" : medium ? "medium" : "small"}
@@ -47,7 +49,7 @@ export const JoinUs: React.FC = () => {
 							fontSize: large ? "16px" : medium ? "14px" : "12px",
 						}}
 					>
-						Daftar sebagai Alumni
+						{t("joinus3")}
 					</Typography>
 				</Button>
 			</Box>

@@ -9,89 +9,104 @@ import {
 	useMediaQuery,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import ClearIcon from "@mui/icons-material/Clear";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Close, FilterList } from "@mui/icons-material";
+import { useTranslations } from "next-intl";
 
 interface ActivitySearchProps {
 	onSearch: (query: string) => void;
 	onDateRangeChange: (startDate: string, endDate: string) => void;
+	initialSearch: string;
+	initialStartDate: string;
+	initialEndDate: string;
 }
 
 export const ActivitySearch: React.FC<ActivitySearchProps> = ({
 	onSearch,
 	onDateRangeChange,
+	initialSearch,
+	initialStartDate,
+	initialEndDate,
 }) => {
-	const [searchText, setSearchText] = useState("");
-	const [startDate, setStartDate] = useState("");
-	const [endDate, setEndDate] = useState("");
+	const [searchText, setSearchText] = useState(initialSearch || "");
+	const [startDate, setStartDate] = useState(initialStartDate || "");
+	const [endDate, setEndDate] = useState(initialEndDate || "");
 	const [showFilter, setShowFilter] = useState<boolean>(false);
 
-	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const value = e.target.value;
-		setSearchText(value);
-		onSearch(value);
-	};
-
-	const handleReset = () => {
-		setStartDate("");
-		setEndDate("");
-		onSearch("");
-		onDateRangeChange("", "");
-	};
+	const large = useMediaQuery("(min-width:1024px)");
+	const medium = useMediaQuery("(min-width:768px)");
+	const t = useTranslations("ActivitiesPage");
+	const tglobal = useTranslations("Global");
 
 	const handleApply = () => {
 		onDateRangeChange(startDate, endDate);
 	};
 
-	const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setStartDate(e.target.value);
+	const handleReset = () => {
+		setStartDate("");
+		setEndDate("");
+		setSearchText("");
+		onSearch("");
+		onDateRangeChange("", "");
 	};
 
-	const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setEndDate(e.target.value);
+	const handleSearchClick = () => {
+		onSearch(searchText);
 	};
 
-	const large = useMediaQuery("(min-width:1024px)");
-	const medium = useMediaQuery("(min-width:768px)");
+	const handleClearSearch = () => {
+		setSearchText("");
+		onSearch("");
+	};
+
 	return (
 		<>
 			<Box
 				display="flex"
-				gap={"16px"}
+				gap="16px"
 				width="100%"
-				height={"56px"}
-				alignItems={"center"}
+				height="56px"
+				alignItems="center"
 			>
-				<Box display={"flex"} gap={"16px"} width={"100%"} maxWidth={"320px"}>
+				<Box display="flex" gap="16px" width="100%" maxWidth="320px">
 					<TextField
-						placeholder="Cari judul kegiatan..."
+						placeholder={`${t("search")}...`}
 						fullWidth
 						value={searchText}
-						onChange={handleSearch}
+						onChange={(e) => setSearchText(e.target.value)}
 						InputProps={{
 							startAdornment: (
 								<InputAdornment position="start">
 									<SearchIcon />
 								</InputAdornment>
 							),
+							endAdornment: searchText && (
+								<InputAdornment position="end" sx={{ cursor: "pointer" }}>
+									<ClearIcon onClick={handleClearSearch} />
+								</InputAdornment>
+							),
 						}}
 					/>
+					<Button variant="outlined" onClick={handleSearchClick}>
+						{tglobal("search")}
+					</Button>
 				</Box>
 
-				<Box display="flex" height={"100%"}>
+				<Box display="flex" height="100%">
 					<Button
 						variant="outlined"
 						sx={{ height: "100%", display: "flex", gap: "8px" }}
 						onClick={() => setShowFilter(!showFilter)}
 					>
-						<Typography fontFamily="Poppins" textTransform={"none"}>
+						<Typography fontFamily="Poppins" textTransform="none">
 							Filter
 						</Typography>
 						{!showFilter ? (
-							<FilterList sx={{ fontSize: "16px" }} />
+							<FilterList fontSize="small" />
 						) : (
-							<Close sx={{ fontSize: "16px" }} />
+							<Close fontSize="small" />
 						)}
 					</Button>
 				</Box>
@@ -106,10 +121,10 @@ export const ActivitySearch: React.FC<ActivitySearchProps> = ({
 						transition={{ duration: 0.3, ease: "easeInOut" }}
 					>
 						<Box
-							marginTop={"16px"}
-							display={"flex"}
-							width={"100%"}
-							justifyContent={"space-between"}
+							mt="16px"
+							display="flex"
+							justifyContent="space-between"
+							width="100%"
 						>
 							<Typography>Filter :</Typography>
 							<Button onClick={handleReset}>Reset</Button>
@@ -121,25 +136,25 @@ export const ActivitySearch: React.FC<ActivitySearchProps> = ({
 							mt={2}
 						>
 							<TextField
-								size={large ? "medium" : "small"}
 								type="date"
-								label="Dari Tanggal"
+								label={t("filter1")}
 								InputLabelProps={{ shrink: true }}
+								size={large ? "medium" : "small"}
 								fullWidth
 								value={startDate}
-								onChange={handleStartDateChange}
+								onChange={(e) => setStartDate(e.target.value)}
 							/>
 							<TextField
-								size={large ? "medium" : "small"}
 								type="date"
-								label="Sampai Tanggal"
+								label={t("filter2")}
 								InputLabelProps={{ shrink: true }}
+								size={large ? "medium" : "small"}
 								fullWidth
 								value={endDate}
-								onChange={handleEndDateChange}
+								onChange={(e) => setEndDate(e.target.value)}
 							/>
 							<Button variant="outlined" onClick={handleApply}>
-								Apply
+								{tglobal("apply")}
 							</Button>
 						</Box>
 					</motion.div>

@@ -58,7 +58,7 @@ export const AlumniCard: React.FC<AlumniCardProps> = ({
 				loader={directusImageLoader}
 				style={{ objectFit: "cover" }}
 			/>
-
+			{/* {alumni.imageURL} */}
 			{/* Gender Icon */}
 			<Box
 				sx={{
@@ -127,7 +127,7 @@ export const AlumniCard: React.FC<AlumniCardProps> = ({
 				</Typography>
 				<Typography fontSize={large ? "14px" : medium ? "12px" : "10px"}>
 					Lokasi Tugas:{" "}
-					{alumni.location === "non-makassar" ? "Luar Makassar" : "Makassar"}
+					{alumni.location}
 				</Typography>
 			</Box>
 

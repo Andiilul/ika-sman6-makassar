@@ -7,6 +7,9 @@ import {
 	Typography,
 	TypographyProps,
 	Switch,
+	AccordionProps,
+	AccordionDetails,
+	Accordion,
 } from "@mui/material";
 import { alpha, Theme } from "@mui/material/styles";
 import { StyledComponent } from "@emotion/styled";
@@ -155,4 +158,39 @@ export const ThemeSwitcher = styled(Switch)(({ theme }) => ({
 			backgroundColor: "#8796A5",
 		}),
 	},
+}));
+
+export const AccordionStyle = styled((props: AccordionProps) => (
+	<Accordion disableGutters elevation={0} square {...props} />
+))(({ theme }) => ({
+	border: `1px solid ${theme.palette.divider}`,
+	"&:not(:last-child)": {
+		borderBottom: 0,
+	},
+	"&::before": {
+		display: "none",
+	},
+}));
+
+import MuiAccordionSummary, {
+	AccordionSummaryProps,
+	accordionSummaryClasses,
+} from "@mui/material/AccordionSummary";
+
+export const AccordionSummaryStyle = styled((props: AccordionSummaryProps) => (
+	<MuiAccordionSummary {...props} />
+))(() => ({
+	flexDirection: "row",
+	[`& .${accordionSummaryClasses.expandIconWrapper}.${accordionSummaryClasses.expanded}`]:
+		{
+			transform: "rotate(90deg)",
+		},
+	[`& .${accordionSummaryClasses.content}`]: {
+		marginLeft: "0px",
+	},
+}));
+
+export const AccordionDetailsStyle = styled(AccordionDetails)(() => ({
+	padding: "0px",
+	borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));

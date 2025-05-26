@@ -1,0 +1,86 @@
+{
+  "Footer": {
+    "catchphrase": "Your Gateway to Lifelong Connections",
+    "navigate": "Navigate",
+    "contactus": "Contact Us",
+    "followus": "Follow Our Social Media to Find Out the Latest Updates of Our Progress"
+  },
+  "notFound": {
+    "title": "Oops, Something Went Wrong!",
+    "sub1":  "We apologize, we cannot find the page you are looking for.",
+    "sub2":"Please contact our Client Services or navigate to another page. Thank you...",
+    "button1":"Take Me Home",
+    "button2":"Go Back"
+  },
+  "HomePage": {
+  "title": "Uniting Alumni Across Generations",
+  "about1": "ABOUT US",
+  "about2": "IKA SMA Negeri 6 Makassar is a cross-generational alumni organization that aims to strengthen connections, build networks, and contribute to both the school and the community.",
+  "catch1": "From Alumni, By Alumni",
+  "catch2": "For the Future",
+  "section2": "Together, We Are Connected",
+  "activity1": "Activities and Togetherness",
+  "activity2": "Behind every reunion, social action, and alumni gathering lies the spirit of staying connected and growing together. We believe that togetherness is the key to a thriving community.",
+  "activity3": "View Our Activities",
+  "alumni1": "SMA 6 Makassar Alumni Network",
+  "alumni2": "Hundreds of alumni from various graduating years and backgrounds are now connected in one community. From recent graduates to seasoned professionals — all are here, ready to support one another.",
+  "alumni3": "Explore Our Alumni",
+  "joinus": "Be Part of the Alumni Family",
+  "joinus2": "Reconnect, relive memories, and collaborate across generations with the extended SMA 6 Makassar family.",
+  "joinus3": "Register as an Alumni"
+},
+  "AboutPage": {
+  "title": "About Us",
+  "subtitle1": "ABOUT IKA SMA 6 MAKASSAR",
+  "catch2": "Uniting",
+  "text2": "The Alumni Association of SMA Negeri 6 Makassar is an organization founded by former students of SMA Negeri 6 Makassar. Its mission is to foster camaraderie, enhance networking, and contribute to the development of both the school and the broader community.",
+  "goals": "Goals of",
+  "goals1": "Fostering Connections",
+  "gtext1": "Organizing reunions, gatherings, and social activities to strengthen bonds among alumni.",
+  "goals2": "Contributing to the School",
+  "gtext2": "Providing support in the form of funding, facilities, and programs that enhance the quality of education at SMA Negeri 6 Makassar.",
+  "goals3": "Expanding Networking Opportunities",
+  "gtext3": "Helping alumni grow their business, professional, and social networks.",
+  "goals4": "Supporting Alumni in Need",
+  "gtext4": "Running social assistance programs to support alumni facing challenges."
+},"ActivitiesPage": {
+  "title": "Activities",
+  "subtitle1": "ACTIVITIES OF IKA SMA 6 MAKASSAR",
+  "subtitle2": "List of Activities",
+  "search": "Search Activity Name",
+  "filter1": "From Date",
+  "filter2": "To Date"
+},
+  "DirectoryPage": {
+  "title": "Directory",
+  "subtitle1": "ALUMNI DIRECTORY",
+  "subtitle2": "List of SMAN 6 Makassar Alumni",
+  "search": "Search Alumni Name",
+  "filter1": "Graduation Year",
+  "filter2": "Location",
+  "nonmks": "Outside Makassar"
+},
+ "ContactPage": {
+  "title": "Contact Us",
+  "basecamp": "IKA SMA 6 Makassar Secretariat",
+  "followus": "Follow Us on Social Media"
+},
+"Global": {
+  "seeMore": "See More",
+  "search": "Search",
+  "next": "Next",
+  "previous": "Previous",
+  "loading": "Loading...",
+  "nodata": "No data found",
+  "learnMore": "Learn More",
+  "apply":"Apply"
+},
+"Menu": {
+  "home": "Home",
+  "about": "About Us",
+  "activity": "Activities",
+  "directory": "Directory",
+  "contact": "Contact Us"
+}
+}
+

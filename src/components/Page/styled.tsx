@@ -9,13 +9,17 @@ export const PageWrapper = styled(Box, {
 	width: "100vw",
 	padding: "0px 16px", // mobile default
 	display: "flex",
+	marginBottom: "16px",
+
 	justifyContent: "center",
 	backgroundColor: bgcolor || "transparent",
 	["@media (min-width: 768px)"]: {
 		padding: "0px 32px",
+		marginBottom: "32px",
 	},
 	["@media (min-width: 1024px)"]: {
 		padding: "0px 64px",
+		marginBottom: "64px",
 	},
 }));
 

@@ -14,11 +14,13 @@ import {
 	ActivityWrapper,
 } from "./styled";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export const ActivityHome = () => {
 	const large = useMediaQuery("(min-width:1024px)");
 	const medium = useMediaQuery("(min-width:768px)");
 	const theme = useTheme();
+	const t = useTranslations("HomePage");
 
 	return (
 		<ActivityWrapper>
@@ -28,7 +30,7 @@ export const ActivityHome = () => {
 				width={"100%"}
 				textAlign={"center"}
 			>
-				&quot;Bersama, Kita Terhubung&quot;
+				&quot;{t("section2")}&quot;
 			</Typography>
 
 			<ActivityContainer>
@@ -68,12 +70,10 @@ export const ActivityHome = () => {
 								fontSize={large ? "24px" : medium ? "20px" : "16px"}
 								fontWeight={500}
 							>
-								Aktivitas dan Kebersamaan
+								{t("activity1")}{" "}
 							</Typography>
 							<Typography fontSize={large ? "14px" : "12px"} fontWeight={300}>
-								Di balik setiap reuni, aksi sosial, dan pertemuan alumni, ada
-								semangat untuk terus terhubung dan tumbuh bersama. Kami percaya,
-								kebersamaan adalah kunci dari komunitas yang hidup.
+								{t("activity2")}
 							</Typography>
 						</Box>
 						<Box display={"flex"} justifyContent={"end"}>
@@ -92,7 +92,7 @@ export const ActivityHome = () => {
 											textTransform: "capitalize",
 										}}
 									>
-										Lihat Kegiatan Kami
+										{t("activity3")}{" "}
 									</Typography>
 								</Button>{" "}
 							</Box>
@@ -109,13 +109,10 @@ export const ActivityHome = () => {
 								fontSize={large ? "24px" : medium ? "20px" : "16px"}
 								fontWeight={500}
 							>
-								Jaringan Alumni SMA 6 Makassar
+								{t("alumni1")}{" "}
 							</Typography>
 							<Typography fontSize={large ? "14px" : "12px"} fontWeight={300}>
-								Ratusan alumni dari berbagai angkatan dan latar belakang kini
-								terhubung dalam satu komunitas. Dari yang baru lulus hingga
-								profesional senior — semua ada di sini, dan siap saling
-								mendukung.
+								{t("alumni2")}
 							</Typography>
 						</Box>
 						<Box display={"flex"} justifyContent={large ? "start" : "end"}>
@@ -133,7 +130,7 @@ export const ActivityHome = () => {
 										textTransform: "capitalize",
 									}}
 								>
-									Telusuri Alumni
+									{t("alumni3")}
 								</Typography>
 							</Button>{" "}
 						</Box>

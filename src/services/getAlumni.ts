@@ -1,6 +1,7 @@
 import { IAlumni } from "@/interfaces/Alumni";
 import { directus } from "@/lib/directus";
 import { readFile, readItems } from "@directus/sdk";
+import { aggregate } from "@directus/sdk";
 
 export const getAllAlumni = async (
 	limit: number,
@@ -10,7 +11,7 @@ export const getAllAlumni = async (
 	location?: string
 ) => {
 	try {
-		// Build filters
+		// Build filters as before
 		const nameFilter =
 			keyword && keyword.trim() !== ""
 				? { name: { _icontains: keyword.trim() } }
@@ -24,7 +25,7 @@ export const getAllAlumni = async (
 				? {
 						_and: [
 							{ location: { _ncontains: "makassar" } },
-							{ location: { _nnull: true } }, // Pastikan tidak null
+							{ location: { _nnull: true } },
 						],
 				  }
 				: null;
@@ -36,8 +37,9 @@ export const getAllAlumni = async (
 
 		const filter = filters.length > 0 ? { _and: filters } : {};
 
-		// Fetch alumni
+		// Fetch alumni data (pagination + filter)
 		const result = await directus.request(
+			// Assuming readItems is your helper for GET items
 			readItems("alumni", {
 				limit,
 				page,
@@ -45,31 +47,40 @@ export const getAllAlumni = async (
 			})
 		);
 
-		// Fetch image URLs
-		for (const i in result) {
-			if (result[i].image) {
+		// Fetch total count using aggregate with the SAME filter
+		const totalCountResult = await directus.request(
+			aggregate("alumni", {
+				aggregate: { count: "*" },
+				filter,
+			})
+		);
+
+		const total = totalCountResult[0]?.count ?? 0;
+
+		// Add image URLs as you do
+		for (const item of result) {
+			if (item.image) {
 				try {
-					const file = await directus.request(readFile(result[i].image));
-					result[i].imageURL = file.filename_disk;
-				} catch (error) {
-					console.warn(
-						`⚠️ Failed to read image file for alumni ID ${result[i].id}:`,
-						error
-					);
+					const file = await directus.request(readFile(item.image));
+					item.imageURL = file.filename_disk;
+				} catch {
+					item.imageURL = null;
 				}
 			} else {
-				result[i].imageURL = null;
+				item.imageURL = null;
 			}
 		}
 
-		return result;
+		return {
+			data: result,
+			total,
+		};
 	} catch (error) {
 		console.error("❌ Error in getAllAlumni:", error);
 		throw error;
 	}
 };
 
-import { aggregate } from "@directus/sdk";
 export const getAlumniCount = async (
 	keyword?: string,
 	minDate?: string,

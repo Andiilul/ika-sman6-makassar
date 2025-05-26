@@ -36,7 +36,7 @@ export const AlumniCardWrapper = styled(CardActionArea)<CardActionAreaProps>(
 	({ theme }) => ({
 		display: "flex",
 		gap: "8px",
-		backgroundColor: alpha(theme.palette.background.paper, 0.5),
+		backgroundColor: alpha(theme.palette.background.paper, 1),
 		borderRadius: "8px",
 		padding: "4px",
 		transition: "transform 0.2s",

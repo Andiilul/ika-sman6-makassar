@@ -38,6 +38,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
 				flexDirection: "column",
 				borderRadius: 2,
 				overflow: "hidden",
+				height: "100%",
 				position: "relative",
 				cursor: "pointer",
 			}}
@@ -48,6 +49,8 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
 				sx={{
 					position: "relative",
 					width: "100%",
+					height: "100%",
+
 					aspectRatio: "5 / 3",
 				}}
 			>
@@ -68,6 +71,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
 			<Box
 				padding={large ? "12px" : medium ? "8px" : "4px"}
 				bgcolor={theme.palette.background.paper}
+				minHeight={large ? "160px" : medium ? "160px" : "140px"}
 			>
 				<Typography variant="body2" color="primary">
 					{new Date(activity.date).toDateString()}

@@ -6,16 +6,26 @@ import {
 	FooterWrapper,
 	QuickLinks,
 } from "./styled";
-import menu from "@/constants/menu";
 import { socialMedia } from "@/constants/socialMedia";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export const Footer: React.FC = () => {
 	const theme = useTheme();
 
 	const large = useMediaQuery("(min-width:1024px)");
 	const medium = useMediaQuery("(min-width:768px)");
+	const t = useTranslations("Footer");
+	const tmenu = useTranslations("Menu");
+
+	const menu = [
+		{ title: tmenu("home"), path: "home" },
+		{ title: tmenu("about"), path: "about" },
+		{ title: tmenu("activity"), path: "activity" },
+		{ title: tmenu("directory"), path: "directory" },
+		{ title: tmenu("contact"), path: "contact-us" },
+	];
 
 	return (
 		<FooterWrapper>
@@ -53,7 +63,7 @@ export const Footer: React.FC = () => {
 						fontSize={large ? "14px" : medium ? "12px" : "10px"}
 						fontWeight={"300"}
 					>
-						Your Gateway to Lifelong Connections
+						{t("catchphrase")}
 					</Typography>
 
 					<Typography
@@ -98,14 +108,11 @@ export const Footer: React.FC = () => {
 							fontSize={large ? "28px" : medium ? "24px" : "18px"}
 							fontFamily={"Alike"}
 						>
-							Navigate
+							{t("navigate")}
 						</Typography>
 						<QuickLinks>
 							{menu.map((map, index) => (
-								<Box
-									key={index}
-									sx={{ cursor: "pointer" }}
-								>
+								<Box key={index} sx={{ cursor: "pointer" }}>
 									<Typography
 										color={theme.palette.primary.main}
 										fontFamily={"Poppins"}
@@ -131,15 +138,14 @@ export const Footer: React.FC = () => {
 							fontSize={large ? "28px" : medium ? "24px" : "18px"}
 							fontFamily={"Alike"}
 						>
-							Contact Us
+							{t("contactus")}{" "}
 						</Typography>
 						<Typography
 							fontFamily={"Poppins"}
 							fontSize={large ? "14px" : medium ? "12px" : "10px"}
 							fontWeight={"300"}
 						>
-							Follow Our Social Media to Find Out the Latest Updates of Our
-							Progress
+							{t("followus")}{" "}
 						</Typography>
 						<Box display={"flex"} gap={"12px"}>
 							{socialMedia.map((map, index) => (

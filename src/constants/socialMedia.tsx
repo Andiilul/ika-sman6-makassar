@@ -12,7 +12,7 @@ export const socialMedia = [
 	{
 		name: "Instagram",
 		icon: <Instagram fontSize="inherit" color="primary" />,
-		text: "@kkn112.tosora.unhas",
+		text: "@Coming Soon",
 		link: "https://www.instagram.com/",
 	},
 	{

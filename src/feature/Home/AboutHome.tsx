@@ -11,9 +11,13 @@ import {
 import Image from "next/image";
 import { AboutSection } from "./styled";
 import { ArrowRight } from "@mui/icons-material";
+import { useTranslations } from "next-intl";
 
 export const AboutHome: React.FC = () => {
 	const theme = useTheme();
+		const t = useTranslations('HomePage');
+		const tglobal=useTranslations('Global') // ⬅️ Scope key
+
 
 	const large = useMediaQuery("(min-width:1024px)");
 	const medium = useMediaQuery("(min-width:768px)");
@@ -51,16 +55,16 @@ export const AboutHome: React.FC = () => {
 
 				<Box display={"flex"} gap={"8px"} padding={"12px 0a"} flexDirection={"column"}>
 					<Typography fontSize={"14px"} fontWeight={600} color="secondary">
-						TENTANG KAMI
+						{t("about1")}
 					</Typography>
 					<Box display="flex" flexDirection="column" gap="4px">
 						{large ? (
 							<>
 								<Typography fontSize="36px" lineHeight="36px" fontWeight={600}>
-									Dari Alumni, Oleh Alumni
+									{t("catch1")}
 								</Typography>
 								<Typography fontSize="36px" lineHeight="36px" fontWeight={600}>
-									Untuk Masa Depan
+									{t("catch2")}
 								</Typography>
 							</>
 						) : (
@@ -69,9 +73,9 @@ export const AboutHome: React.FC = () => {
 								lineHeight={medium ? "30px" : "24px"}
 								fontWeight={600}
 							>
-								Dari Alumni, Oleh Alumni,
+									{t("catch1")}
 								<br />
-								Untuk Masa Depan
+									{t("catch2")}
 							</Typography>
 						)}
 					</Box>
@@ -104,10 +108,7 @@ export const AboutHome: React.FC = () => {
 						marginTop={medium ? "16px" : "0px"}
 						fontSize={large ? "16px" : "14px"}
 						fontWeight={500}
-					>
-						IKA SMA Negeri 6 Makassar adalah organisasi alumni lintas generasi
-						yang bertujuan mempererat silaturahmi, membangun jaringan, dan
-						berkontribusi bagi sekolah serta masyarakat.
+					>{t("about2")}
 					</Typography>
 					<Box
 						width={"100%"}
@@ -130,7 +131,7 @@ export const AboutHome: React.FC = () => {
 								fontWeight={400}
 								textTransform={"capitalize"}
 							>
-								Pelajari Selengkapnya <ArrowRight />
+								{tglobal("learnMore")} <ArrowRight />
 							</Typography>
 						</Button>
 					</Box>

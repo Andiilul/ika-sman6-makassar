@@ -14,34 +14,36 @@ import {
 	useMediaQuery,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import ClearIcon from "@mui/icons-material/Clear";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Close, FilterList } from "@mui/icons-material";
+import { useTranslations } from "next-intl";
 
 interface AlumniSearchProps {
 	onSearch: (val: string) => void;
-	onFilterYear: (val: string) => void;
-	onFilterLocation: (val: string) => void;
+	onApplyFilters: (year: string, location: string) => void;
+	initialSearch: string;
+	initialYear: string;
+	initialLocation: "makassar" | "non-makassar" | "";
 }
 
 export const AlumniSearch: React.FC<AlumniSearchProps> = ({
 	onSearch,
-	onFilterYear,
-	onFilterLocation,
+	onApplyFilters,
+	initialSearch,
+	initialYear,
+	initialLocation,
 }) => {
-	const [searchText, setSearchText] = useState("");
-	const [year, setYear] = useState("");
+	const [searchText, setSearchText] = useState(initialSearch);
+	const [year, setYear] = useState(initialYear);
 	const [selectedLocation, setSelectedLocation] = useState<
 		"makassar" | "non-makassar" | ""
-	>("");
+	>(initialLocation);
+	const t = useTranslations("DirectoryPage");
+	const tglobal = useTranslations("Global");
 
 	const [showFilter, setShowFilter] = useState<boolean>(false);
-
-	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const value = e.target.value;
-		setSearchText(value);
-		onSearch(value);
-	};
 
 	const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setYear(e.target.value);
@@ -53,37 +55,56 @@ export const AlumniSearch: React.FC<AlumniSearchProps> = ({
 	};
 
 	const handleApply = () => {
-		onFilterYear(year);
-		onFilterLocation(selectedLocation);
+		onApplyFilters(year, selectedLocation);
 	};
 
 	const handleReset = () => {
 		setYear("");
 		setSelectedLocation("");
-		onFilterYear("");
-		onFilterLocation("");
+		onApplyFilters("", "");
+	};
+
+	// Clear search input and trigger search with empty keyword
+	const handleClearSearch = () => {
+		setSearchText("");
+		onSearch("");
 	};
 
 	const large = useMediaQuery("(min-width:1024px)");
 	const medium = useMediaQuery("(min-width:768px)");
 
 	return (
-		<>
+		<Box display={"flex"} flexDirection="column" marginY={"16px"}>
 			<Box display="flex" gap="16px" width="100%" alignItems="center">
-				<Box display="flex" gap="16px" width="100%" maxWidth="320px">
+				<Box
+					display="flex"
+					gap="16px"
+					width="100%"
+					maxWidth="320px"
+					position="relative"
+				>
 					<TextField
-						placeholder="Cari nama alumni..."
+						placeholder={`${t("search")}...`}
 						fullWidth
 						value={searchText}
-						onChange={handleSearch}
+						onChange={(e) => setSearchText(e.target.value)}
 						InputProps={{
 							startAdornment: (
 								<InputAdornment position="start">
 									<SearchIcon />
 								</InputAdornment>
 							),
+							endAdornment: searchText ? (
+								<InputAdornment position="end" sx={{ cursor: "pointer" }}>
+									<ClearIcon onClick={handleClearSearch} />
+								</InputAdornment>
+							) : null,
 						}}
 					/>
+
+					<Button variant="outlined" onClick={() => onSearch(searchText)}>
+						{tglobal("search")}
+					</Button>
 				</Box>
 
 				<Box display="flex" height="100%">
@@ -130,14 +151,14 @@ export const AlumniSearch: React.FC<AlumniSearchProps> = ({
 						>
 							<TextField
 								type="number"
-								label="Tahun Kelulusan"
+								label={t("filter1")}
 								size={large ? "medium" : "small"}
 								fullWidth
 								value={year}
 								onChange={handleYearChange}
 							/>
 							<FormControl fullWidth size={large ? "medium" : "small"}>
-								<InputLabel>Lokasi</InputLabel>
+								<InputLabel>{t("filter2")}</InputLabel>
 								<Select
 									value={selectedLocation}
 									label="Lokasi"
@@ -145,16 +166,16 @@ export const AlumniSearch: React.FC<AlumniSearchProps> = ({
 								>
 									<MenuItem value="">Semua Lokasi</MenuItem>
 									<MenuItem value="makassar">Makassar</MenuItem>
-									<MenuItem value="non-makassar">Luar Makassar</MenuItem>
+									<MenuItem value="non-makassar">{t("nonmks")}</MenuItem>
 								</Select>
 							</FormControl>
 							<Button variant="outlined" onClick={handleApply}>
-								Apply
+								{tglobal("apply")}
 							</Button>
 						</Box>
 					</motion.div>
 				)}
 			</AnimatePresence>
-		</>
+		</Box>
 	);
 };

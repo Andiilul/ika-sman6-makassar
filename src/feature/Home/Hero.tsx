@@ -16,9 +16,11 @@ import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import { useTheme } from "@mui/material";
 import { useState } from "react";
 import { Phone } from "@mui/icons-material";
+import { useTranslations } from "next-intl";
 
 export const Hero: React.FC = () => {
 	const [hover, setHover] = useState<number | null>(null);
+	const t = useTranslations("HomePage"); // ⬅️ Scope key
 
 	const large = useMediaQuery("(min-width:1024px)");
 	const medium = useMediaQuery("(min-width:768px)");
@@ -35,7 +37,7 @@ export const Hero: React.FC = () => {
 						fontSize={large ? "24px" : medium ? "18px" : "12px"}
 						color={"white"}
 					>
-						Menyatukan Alumni dari Berbagai Generasi
+						{t("title")}{" "}
 					</Typography>
 					<Typography
 						width={"100%"}
