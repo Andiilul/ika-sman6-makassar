@@ -61,8 +61,8 @@
     "filter2": "Hingga Tanggal"
   },
   "DirectoryPage": {
-    "title": "Direktori",
-    "subtitle1": "DIREKTORI ALUMNI",
+    "title": "Alumni",
+    "subtitle1": "ALUMNI",
     "subtitle2": "Daftar Alumni SMAN 6 Makassar",
     "search": "Cari Nama Alumni",
     "filter1": "Tahun Kelulusan",
@@ -88,7 +88,7 @@
     "home": "Beranda",
     "about": "Tentang Kami",
     "activity": "Kegiatan",
-    "directory": "Direktori",
+    "directory": "Alumni",
     "contact": "Kontak Kami"
 }}
 

@@ -221,7 +221,7 @@ export const Hero: React.FC = () => {
 									textAlign="center"
 									color={theme.palette.text.primary}
 								>
-									Direktori Alumni
+									Alumni
 								</Typography>
 								<Typography
 									fontSize="14px"

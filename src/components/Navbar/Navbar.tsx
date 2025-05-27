@@ -60,7 +60,7 @@ const NavbarContent: React.FC<{
 		{ title: tmenu("home"), path: "/" },
 		{ title: tmenu("about"), path: "about" },
 		{ title: tmenu("activity"), path: "activity" },
-		{ title: tmenu("directory"), path: "directory" },
+		{ title: tmenu("directory"), path: "alumni" },
 		{ title: tmenu("contact"), path: "contact-us" },
 	];
 
@@ -282,7 +282,7 @@ export const Navbar: React.FC = () => {
 		{ title: tmenu("home"), path: "home" },
 		{ title: tmenu("about"), path: "about" },
 		{ title: tmenu("activity"), path: "activity" },
-		{ title: tmenu("directory"), path: "directory" },
+		{ title: tmenu("directory"), path: "alumni" },
 		{ title: tmenu("contact"), path: "contact-us" },
 	];
 

@@ -23,7 +23,7 @@ export const Footer: React.FC = () => {
 		{ title: tmenu("home"), path: "home" },
 		{ title: tmenu("about"), path: "about" },
 		{ title: tmenu("activity"), path: "activity" },
-		{ title: tmenu("directory"), path: "directory" },
+		{ title: tmenu("directory"), path: "alumni" },
 		{ title: tmenu("contact"), path: "contact-us" },
 	];
 
