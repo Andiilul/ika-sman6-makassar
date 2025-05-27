@@ -43,7 +43,19 @@
   "gtext3": "Helping alumni grow their business, professional, and social networks.",
   "goals4": "Supporting Alumni in Need",
   "gtext4": "Running social assistance programs to support alumni facing challenges."
-},"ActivitiesPage": {
+},
+  "Teams":{
+    
+    "title":"GENERAL CHAIRPERSON",
+    "subtitle":"CENTRAL EXECUTIVE BOARD OF IKA SMAN 6 MAKASSAR",
+    "chairperson":"General Chairperson",
+    "current":"Currently Serving",
+    "alumni":"Alumni Batch"
+  },
+
+
+
+"ActivitiesPage": {
   "title": "Activities",
   "subtitle1": "ACTIVITIES OF IKA SMA 6 MAKASSAR",
   "subtitle2": "List of Activities",
@@ -81,6 +93,4 @@
   "activity": "Activities",
   "directory": "Directory",
   "contact": "Contact Us"
-}
-}
-
+}}

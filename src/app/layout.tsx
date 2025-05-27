@@ -14,6 +14,8 @@ const alike = Alike({
 	variable: "--font-alike",
 });
 
+import "./globals.css"
+
 export default function RootLayout({
 	children,
 }: {

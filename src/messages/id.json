@@ -44,6 +44,13 @@
     "goals4": "Membantu Alumni yang Membutuhkan",
     "gtext4": "Mengadakan program-program bantuan sosial untuk membantu alumni yang mengalami kesulitan."
   },
+  "Teams":{
+    "title":"KETUA UMUM",
+    "subtitle":"PENGURUS PUSAT IKA SMAN 6 MAKASSAR",
+    "chairperson":"Ketua Umum",
+    "current":"Sedang Menjabat",
+    "alumni":"Alumni"
+  },
 
   "ActivitiesPage": {
     "title": "Kegiatan",
