@@ -29,7 +29,7 @@ export const AlumniCard: React.FC<AlumniCardProps> = ({
 	const isHoverEnabled = medium;
 
 	const handleClick = () => {
-		router.push(`/directory/${alumni.id}`);
+		router.push(`/alumni/${alumni.id}`);
 	};
 
 	const clampStyle = (lines: number) => ({
