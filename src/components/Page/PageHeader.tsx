@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 interface PageHeaderProps {
-	title: string;}
+	title: string;
+}
 
 export const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
 	const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -14,7 +15,14 @@ export const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
 
 	const pathname = usePathname();
 
-	const segments = pathname.split("/").filter((segment) => segment !== "");
+	const locales = ["en", "id"]; // add other locales if needed
+
+	const segments = pathname
+		.split("/")
+		.filter(
+			(segment) => segment !== "" && !locales.includes(segment.toLowerCase())
+		);
+
 
 	const breadcrumbList = [
 		{ label: "IKA SMA 6", href: "/" },

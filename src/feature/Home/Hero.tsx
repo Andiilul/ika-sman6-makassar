@@ -51,7 +51,7 @@ export const Hero: React.FC = () => {
 							userSelect: "none",
 						}}
 					>
-						IKA SMAN NEGERI 6
+						IKA SMA NEGERI 6
 					</Typography>
 					<Typography
 						width={"100%"}
