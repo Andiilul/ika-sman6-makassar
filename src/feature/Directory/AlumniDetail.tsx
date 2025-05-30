@@ -8,6 +8,8 @@ import {
 	Typography,
 	CircularProgress,
 	useMediaQuery,
+	useTheme,
+	alpha,
 } from "@mui/material";
 import { PageLayout } from "@/components/Page";
 import { NotFound } from "../NotFound";
@@ -25,6 +27,7 @@ export const AlumniDetail: React.FC<AlumniDetailProps> = ({ id }) => {
 	const large = useMediaQuery("(min-width:1024px)");
 	const medium = useMediaQuery("(min-width:768px)");
 
+	const theme = useTheme();
 	useEffect(() => {
 		const fetchAlumni = async () => {
 			try {
@@ -88,8 +91,9 @@ export const AlumniDetail: React.FC<AlumniDetailProps> = ({ id }) => {
 						</Box>
 						<Box display={"flex"} flexDirection={"column"} gap="8px">
 							<Typography
+								fontFamily={"Poppins"}
 								fontSize={large ? "32px" : medium ? "24px" : "16px"}
-								fontWeight={400}
+								fontWeight={500}
 							>
 								{alumni.name}
 							</Typography>
@@ -123,9 +127,52 @@ export const AlumniDetail: React.FC<AlumniDetailProps> = ({ id }) => {
 							</Typography>
 						</Box>
 					</Box>
-          <Box>
-            adasd
-          </Box>
+					<Box
+						display={"flex"}
+						gap={large ? "128px" : medium ? "64px" : "32px"}
+						width={"100%"}
+					>
+						<Box width={"360px"}>
+							<Box
+								display={"flex"}
+								gap={"8px"}
+								alignItems={"center"}
+								width={"100%"}
+							>
+								<Typography>Work</Typography>
+								<Box
+									height={"1px"}
+									bgcolor={alpha(theme.palette.text.primary, 0.2)}
+									flex={1}
+								></Box>
+							</Box>
+							<Box>
+								<Typography>
+									Profession : {alumni.profession || "Not specified"}
+								</Typography>
+								<Typography>
+									Position : {alumni.profession || "Not specified"}
+								</Typography>
+								<Typography>
+									Domicile : {alumni.domicile || "Not specified"}
+								</Typography>
+								<Typography>
+									Location : {alumni.location}
+								</Typography>
+							</Box>
+						</Box>
+						<Box>
+							<Typography>Contact Information</Typography>
+							<Box>
+								<Typography>
+									Contact Number : {alumni.contact_number || "Not specified"}
+								</Typography>
+								<Typography>
+									Contact Number : {alumni.contact_number || "Not specified"}
+								</Typography>
+							</Box>
+						</Box>
+					</Box>
 				</AlumniDetailContainer>
 			</AlumniDetailWrapper>
 		</PageLayout>

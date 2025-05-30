@@ -147,7 +147,7 @@ export const ActivityHome = () => {
 						display={large ? "flex" : "none"}
 						alignItems={"flex-end"}
 					>
-						<Image src="/images/test-hero.webp" fill alt="" />
+						<Image src="/images/new_hero.jpg" fill alt="" />
 						<Box
 							position={"absolute"}
 							zIndex={"10"}

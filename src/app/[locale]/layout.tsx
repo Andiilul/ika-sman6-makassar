@@ -1,16 +1,25 @@
 // app/[locale]/layout.tsx
 
 import LocaleHelper from "./localeHelper";
+import { ReactNode } from "react";
 
 interface LocaleLayoutProps {
-  children: React.ReactNode;
-  params: { locale: string };
+	children: ReactNode;
+	params: Promise<{ locale: string }>; // now async
 }
 
-export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
-  const { locale } = params;
-  // Import pesan sesuai locale, contoh import dinamis
-  const messages = (await import(`@/messages/${locale}.json`)).default;
+export default async function LocaleLayout({
+	children,
+	params,
+}: LocaleLayoutProps) {
+	const { locale } = await params; // Await params
 
-  return <LocaleHelper locale={locale} messages={messages}>{children}</LocaleHelper>;
+	// Import locale-specific messages
+	const messages = (await import(`@/messages/${locale}.json`)).default;
+
+	return (
+		<LocaleHelper locale={locale} messages={messages}>
+			{children}
+		</LocaleHelper>
+	);
 }

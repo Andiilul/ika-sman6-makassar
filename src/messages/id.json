@@ -69,6 +69,21 @@
     "filter2": "Lokasi",
     "nonmks" : "Luar Makassar"
   },
+    
+"Alumni":{
+  "name": "Nama" ,
+	"nisn":  "NISN",
+	"gender": "Jenis Kelamin",
+	"graduation_year": "Tahun Kelulusan",
+	"ethnicity": "Suku",  
+	"domicile": "Domisili Saat Ini",  
+	"address": "Alamat",  
+	"profession": "Profesi",
+	"position": "Jabatan",  
+	"location": "Lokasi Tugas",  
+	"hobby": "Hobi",  
+	"contact_number": "Nomor Kontak"
+},
   "ContactPage": {
     "title": "Kontak Kami",
     "basecamp": "Sekretariat IKA SMA 6 Makassar",
@@ -88,7 +103,7 @@
     "home": "Beranda",
     "about": "Tentang Kami",
     "activity": "Kegiatan",
-    "directory": "Alumni",
+    "directory": "Alumni ",
     "contact": "Kontak Kami"
 }}
 

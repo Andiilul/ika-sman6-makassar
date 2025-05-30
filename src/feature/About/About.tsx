@@ -124,7 +124,7 @@ export const About: React.FC = () => {
 								overflow="hidden"
 							>
 								<Image
-									src="/images/test-hero.webp"
+									src="/images/new_hero.jpg"
 									alt="about"
 									fill
 									style={{

@@ -3,6 +3,7 @@
 import { Box, Button, Typography, useMediaQuery } from "@mui/material";
 import { JoinUsWrapper } from "./styled";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 export const JoinUs: React.FC = () => {
 	const large = useMediaQuery("(min-width:1024px)");
@@ -34,24 +35,26 @@ export const JoinUs: React.FC = () => {
 				>
 					{t("joinus2")}
 				</Typography>
-				<Button
-					size={large ? "large" : medium ? "medium" : "small"}
-					variant="outlined"
-					color="primary"
-					sx={{
-						borderRadius: "4px",
-					}}
-				>
-					<Typography
+				<Link href="/register" style={{ textDecoration: "none" }}>
+					<Button
+						size={large ? "large" : medium ? "medium" : "small"}
+						variant="outlined"
+						color="primary"
 						sx={{
-							padding: "4px 12px",
-							textTransform: "capitalize",
-							fontSize: large ? "16px" : medium ? "14px" : "12px",
+							borderRadius: "4px",
 						}}
 					>
-						{t("joinus3")}
-					</Typography>
-				</Button>
+						<Typography
+							sx={{
+								padding: "4px 12px",
+								textTransform: "capitalize",
+								fontSize: large ? "16px" : medium ? "14px" : "12px",
+							}}
+						>
+							{t("joinus3")}
+						</Typography>
+					</Button>
+				</Link>
 			</Box>
 		</JoinUsWrapper>
 	);

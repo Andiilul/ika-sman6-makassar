@@ -74,7 +74,7 @@ export const PageHeaderWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
 		alignItems: "center",
 		width: "100%",
 		backgroundSize: "cover",
-		backgroundImage: "url('/images/test-hero.webp')",
+		backgroundImage: "url('/images/new_hero.jpg')",
 		backgroundPosition: "center",
 		height: "max-content",
 		"&::before": {

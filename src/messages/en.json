@@ -72,6 +72,21 @@
   "filter2": "Location",
   "nonmks": "Outside Makassar"
 },
+"Alumni":{
+  "name": "Name" ,
+	"nisn":  "NISN",
+	"gender": "Gender",
+	"graduation_year": "Graduation Year",
+	"ethnicity": "Ethnicity",  
+	"domicile": "Current Domicile",  
+	"address": "Address",  
+	"profession": "Profession",
+	"position": "Position",  
+	"location": "Working Location",  
+	"hobby": "Hobby",  
+	"contact_number": "Contact Number"  
+},
+
  "ContactPage": {
   "title": "Contact Us",
   "basecamp": "IKA SMA 6 Makassar Secretariat",

@@ -59,6 +59,8 @@ export const HeroWrapper: StyledComponent<BoxProps & { theme?: Theme }> =
 		},
 		["@media (min-width: 1024px)"]: {
 			padding: "120px 64px",
+			height: "100vh",
+			maxHeight: "720px",
 			minHeight: "640px",
 		},
 	}));
@@ -194,11 +196,9 @@ export const ActivityContent: StyledComponent<BoxProps & { theme?: Theme }> =
 		justifyContent: "space-between",
 		["@media (min-width: 1024px)"]: {
 			minHeight: "350px",
-		padding: "48px",
-
+			padding: "48px",
 		},
 		["@media (min-width: 768px)"]: {
-		padding: "36px",
-
+			padding: "36px",
 		},
 	}));

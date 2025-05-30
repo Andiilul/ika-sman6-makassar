@@ -23,22 +23,22 @@ const Goals = () => {
 			{
 				title: t("goals1"),
 				desc: t("gtext1"),
-				image: "/images/test-hero.webp",
+				image: "/images/new_hero.jpg",
 			},
 			{
 				title: t("goals2"),
 				desc: t("gtext2"),
-				image: "/images/test-hero.webp",
+				image: "/images/new_hero.jpg",
 			},
 			{
 				title: t("goals3"),
 				desc: t("gtext3"),
-				image: "/images/test-hero.webp",
+				image: "/images/new_hero.jpg",
 			},
 			{
 				title: t("goals4"),
 				desc: t("gtext4"),
-				image: "/images/test-hero.webp",
+				image: "/images/new_hero.jpg",
 			},
 		],
 		[t] // dependencies

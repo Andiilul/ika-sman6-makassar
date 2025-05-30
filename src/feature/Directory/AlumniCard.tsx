@@ -7,6 +7,7 @@ import FemaleIcon from "@mui/icons-material/Female";
 import { directusImageLoader } from "@/components/DirectusImage/DirectusImageLoader";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 
 interface AlumniCardProps {
 	alumni: IAlumni;
@@ -24,7 +25,9 @@ export const AlumniCard: React.FC<AlumniCardProps> = ({
 	const theme = useTheme();
 	const router = useRouter();
 	const large = useMediaQuery("(min-width:1024px)");
+	const locale = useLocale();
 	const medium = useMediaQuery("(min-width:768px)");
+	const t = useTranslations("Alumni");
 
 	const isHoverEnabled = medium;
 
@@ -123,11 +126,15 @@ export const AlumniCard: React.FC<AlumniCardProps> = ({
 					{alumni.profession}
 				</Typography>
 				<Typography fontSize={large ? "14px" : medium ? "12px" : "10px"}>
-					Tahun Lulusan: {alumni.graduation_year}
+					{t("graduation_year")}: {alumni.graduation_year}
 				</Typography>
 				<Typography fontSize={large ? "14px" : medium ? "12px" : "10px"}>
-					Lokasi Tugas:{" "}
-					{alumni.location}
+					{t("location")} :{" "}
+					{alumni.location === "non-makassar"
+						? "Makassar"
+						: locale === "en"
+						? "Outside of Makassar"
+						: "Luar Makassar"}
 				</Typography>
 			</Box>
 
