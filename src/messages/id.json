@@ -105,5 +105,40 @@
     "activity": "Kegiatan",
     "directory": "Alumni ",
     "contact": "Kontak Kami"
-}}
+},
+"RegisterPage": {
+  "title": "Formulir Pendaftaran Alumni",
+  "placeholder": "Tahun Kelulusan",
+  "subtitle": "Silakan pilih tahun kelulusan Anda untuk mengisi formulir alumni sesuai dengan angkatan masing-masing.",
+  "batch" :"Angkatan",
+  "open": "Buka Formulir",
+  "select" : "Pilih Angkatan Terlebih Dahulu"
+},
+  "Welcome": {
+    "chairmanPhotoAlt": "Foto Ketua",
+    "name": "Ir. Muhammad Asriadi Doloking, MM.",
+    "title": "Ketua Umum IKA SMAN 6 Makassar",
+    "message": "Ikatan Alumni SMA Negeri 6 Makassar adalah organisasi yang dibentuk oleh para alumni untuk menjalin silaturahmi, memperkuat jaringan, dan berkontribusi dalam pembangunan sekolah serta masyarakat.",
+    "education": "Pendidikan",
+    "educationList": {
+      "0": { "title": "SMU Negeri 6 Makassar", "year": "1992" },
+      "1": { "title": "Teknik Sipil, UMI Makassar", "year": "1996" },
+      "2": { "title": "Magister Manajemen, UMI Makassar", "year": "2014" }
+    },
+    "organization": "Organisasi",
+    "organizationList": {
+      "0": "HMI Komisariat Fakultas Teknik",
+      "1": "Shorinji Kempo Dojo UMI",
+      "2": "Ketua Angkatan 1992 IKA SMAN 6",
+      "3": "Ketua Harian IKA SMAN 6 (2021–2024)"
+    },
+    "work": "Pekerjaan",
+    "workList": {
+      "0": "Developer & Konsultan Teknik (Yasa Group)",
+      "1": "Pemilik dan Pengelola Pasar Butung Makassar"
+    }
+}
+
+
+}
 

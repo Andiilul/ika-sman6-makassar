@@ -1,13 +1,32 @@
+"use client";
+
 import theme from "@/constants/theme/theme";
 import { Box, Typography, Divider, useMediaQuery } from "@mui/material";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export const Welcome: React.FC = () => {
-	const large = useMediaQuery('(min-width:1024px)');
-	const medium = useMediaQuery('(min-width:768px)');
-	
+	const t = useTranslations("Welcome");
+	const large = useMediaQuery("(min-width:1024px)");
+	const medium = useMediaQuery("(min-width:768px)");
+
+	const educationList = [
+		{ title: t("educationList.0.title"), year: t("educationList.0.year") },
+		{ title: t("educationList.1.title"), year: t("educationList.1.year") },
+		{ title: t("educationList.2.title"), year: t("educationList.2.year") },
+	];
+
+	const organizationList = [
+		t("organizationList.0"),
+		t("organizationList.1"),
+		t("organizationList.2"),
+		t("organizationList.3"),
+	];
+
+	const workList = [t("workList.0"), t("workList.1")];
+
 	return (
-		<Box paddingY={"128px"} width="100%">
+		<Box paddingY="128px" width="100%">
 			{/* Top Section */}
 			<Box
 				display="flex"
@@ -26,7 +45,7 @@ export const Welcome: React.FC = () => {
 					<Box width="100%" maxWidth="360px">
 						<Image
 							src="/images/welcome.png"
-							alt="Chairman Photo"
+							alt={t("chairmanPhotoAlt")}
 							width={400}
 							height={400}
 							style={{ width: "100%", height: "auto", borderRadius: "16px" }}
@@ -37,7 +56,7 @@ export const Welcome: React.FC = () => {
 				{/* Main Info */}
 				<Box flex={1} display="flex" flexDirection="column" gap={4}>
 					{/* Logo */}
-					<Box height="48px" display={"flex"} alignItems="center">
+					<Box height="48px" display="flex" alignItems="center">
 						<Image
 							src="/images/logo.png"
 							alt="IKA Logo"
@@ -45,9 +64,6 @@ export const Welcome: React.FC = () => {
 							height={48}
 							style={{ width: "auto", height: "100%" }}
 						/>
-						<Typography>
-							{" "}
-						</Typography>
 					</Box>
 
 					{/* Name + Title */}
@@ -57,7 +73,7 @@ export const Welcome: React.FC = () => {
 							fontWeight={600}
 							fontFamily="Poppins"
 						>
-							Ir. Muhammad Asriadi Doloking, MM.
+							{t("name")}
 						</Typography>
 						<Box
 							bgcolor={theme.palette.secondary.main}
@@ -67,16 +83,13 @@ export const Welcome: React.FC = () => {
 							mb={2}
 						/>
 						<Typography fontSize="18px" color={theme.palette.text.secondary}>
-							Ketua Umum IKA SMAN 6 Makassar
+							{t("title")}
 						</Typography>
 					</Box>
 
 					{/* Welcome Message */}
 					<Typography fontSize="16px" fontFamily="Poppins" lineHeight={1.7}>
-						&quot;Ikatan Alumni SMA Negeri 6 Makassar adalah organisasi yang
-						dibentuk oleh para alumni untuk menjalin silaturahmi, memperkuat
-						jaringan, dan berkontribusi dalam pembangunan sekolah serta
-						masyarakat.&quot;
+						{t("message")}
 					</Typography>
 				</Box>
 			</Box>
@@ -88,20 +101,25 @@ export const Welcome: React.FC = () => {
 				justifyContent="space-between"
 				gap={4}
 				pt={6}
-				px={large? "50px" : medium ? "16px" : "20px"}
+				px={large ? "50px" : medium ? "16px" : "20px"}
 			>
 				{/* Pendidikan */}
 				<Box flex={1}>
-					<Typography fontWeight={600} fontFamily={"Poppins"} fontSize="20px" mb={2}>
-						Pendidikan
+					<Typography
+						fontWeight={600}
+						fontFamily="Poppins"
+						fontSize="20px"
+						mb={2}
+					>
+						{t("education")}
 					</Typography>
-					{[
-						{ title: "SMU Negeri 6 Makassar", year: "1992" },
-						{ title: "Teknik Sipil, UMI Makassar", year: "1996" },
-						{ title: "Magister Manajemen, UMI Makassar", year: "2014" },
-					].map((item, idx) => (
+					{educationList.map((item, idx) => (
 						<Box key={idx} mb={1}>
-							<Typography fontWeight={400} fontFamily={"Poppins"} fontSize={"14px"}>
+							<Typography
+								fontWeight={400}
+								fontFamily="Poppins"
+								fontSize="14px"
+							>
 								{item.title}
 								<Typography component="span" color="text.secondary">
 									{" "}
@@ -115,17 +133,23 @@ export const Welcome: React.FC = () => {
 
 				{/* Organisasi */}
 				<Box flex={1}>
-					<Typography fontWeight={600} fontFamily={"Poppins"} fontSize="20px" mb={2}>
-						Organisasi
+					<Typography
+						fontWeight={600}
+						fontFamily="Poppins"
+						fontSize="20px"
+						mb={2}
+					>
+						{t("organization")}
 					</Typography>
-					{[
-						"HMI Komisariat Fakultas Teknik",
-						"Shorinji Kempo Dojo UMI",
-						"Ketua Angkatan 1992 IKA SMAN 6",
-						"Ketua Harian IKA SMAN 6 (2021–2024)",
-					].map((org, idx) => (
+					{organizationList.map((org, idx) => (
 						<Box key={idx} mb={1}>
-							<Typography fontWeight={400} fontFamily={"Poppins"} fontSize={"14px"}>{org}</Typography>
+							<Typography
+								fontWeight={400}
+								fontFamily="Poppins"
+								fontSize="14px"
+							>
+								{org}
+							</Typography>
 							<Divider sx={{ mt: 1 }} />
 						</Box>
 					))}
@@ -133,15 +157,23 @@ export const Welcome: React.FC = () => {
 
 				{/* Pekerjaan */}
 				<Box flex={1}>
-					<Typography fontWeight={600} fontFamily={"Poppins"} fontSize="20px" mb={2}>
-						Pekerjaan
+					<Typography
+						fontWeight={600}
+						fontFamily="Poppins"
+						fontSize="20px"
+						mb={2}
+					>
+						{t("work")}
 					</Typography>
-					{[
-						"Developer & Konsultan Teknik (Yasa Group)",
-						"Pemilik dan Pengelola Pasar Butung Makassar",
-					].map((job, idx) => (
+					{workList.map((job, idx) => (
 						<Box key={idx} mb={1}>
-							<Typography fontWeight={400} fontFamily={"Poppins"} fontSize={"14px"}>{job}</Typography>
+							<Typography
+								fontWeight={400}
+								fontFamily="Poppins"
+								fontSize="14px"
+							>
+								{job}
+							</Typography>
 							<Divider sx={{ mt: 1 }} />
 						</Box>
 					))}
